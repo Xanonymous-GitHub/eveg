@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link href="css/shopmobile.css" media="screen and (max-width: 600px)" rel="stylesheet">
+  <link href="css/shop.css" media="screen and (min-width: 601px)" rel="stylesheet">
+  <link href="css/common.css" rel="stylesheet">
+  <link href="css/colours.css" rel="stylesheet">
+  <link href="/favicon.ico" rel="icon">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>E-Veg Shop</title>
+</head>
+<body>
+<!--<div id="app"></div>-->
+<div class="hero">
+  <div class="title">E-Veg</div>
+  <div class="navbar">
+    <div class="toggle-wrapper">
+      <a class="toggle-button" href="#">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </a>
+    </div>
+    <div class="navbar-links">
+      <ul>
+        <li><a href="#"><span>Contact</span></a></li>
+        <li><a href="#" id="search-link"><span>Search</span></a></li>
+        <li><a href="#"><span>About</span></a></li>
+        <li class="spacer">&nbsp;</li>
+        <li class="welcome"><a>Welcome, Test User</a></li>
+        <li><a class="basket" href="checkout.html"><span>
+            Checkout</span></a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="search-bar">
+    <input id="searchbox" type="text"/>
+    <div class="searchbuttons">
+      <a href="#" id="searchbutton">
+          <span>
+            search
+            </span>
+      </a>
+      <a href="#" id="closesearchbutton">
+
+          <span>
+            close
+          </span>
+      </a>
+
+    </div>
+  </div>
+</div>
+<div class="productList">
+
+</div>
+
+<div class="about">
+  <div>&copy; 2021 InterVeg Coventry Ltd.</div>
+  <div>Fresh produce from the Midland's green countryside.</div>
+</div>
+<div id="cookieMessage"><h1>This site uses cookies</h1>
+  <p>By using this site, you are consenting to our use of cookies</p>
+  <p>We use cookies purely for the functionality of the website - to store the products that are in your basket.</p>
+  <p>For further details of how we use your data, please see our privacy policy.</p>
+  <p><a id="acceptCookies">Accept</a></p>
+</div>
+
+<script src="js/products.js" type="module"></script>
+<script src="js/shop.js" type="module"></script>
+<script src="main.ts" type="module"></script>
+</body>
+</html>

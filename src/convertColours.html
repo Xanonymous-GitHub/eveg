@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <script>
+    // var palette=[{"name":"Black","hex":"000000","rgb":[0,0,0],"cmyk":[0,0,0,100],"hsb":[0,0,0],"hsl":[0,0,0],"lab":[0,0,0]},{"name":"Charcoal","hex":"2f4550","rgb":[47,69,80],"cmyk":[41,14,0,69],"hsb":[200,41,31],"hsl":[200,26,25],"lab":[28,-5,-9]},{"name":"Dark Electric Blue","hex":"586f7c","rgb":[88,111,124],"cmyk":[29,10,0,51],"hsb":[202,29,49],"hsl":[202,17,42],"lab":[45,-5,-10]},{"name":"Powder Blue","hex":"b8dbd9","rgb":[184,219,217],"cmyk":[16,0,1,14],"hsb":[177,16,86],"hsl":[177,33,79],"lab":[85,-12,-3]},{"name":"Ghost White","hex":"f4f4f9","rgb":[244,244,249],"cmyk":[2,2,0,2],"hsb":[240,2,98],"hsl":[240,29,97],"lab":[96,1,-2]}];
+
+    function generateCSS() {
+      try {
+        let inStr = document.getElementById('colorcode').value;
+        let palette = JSON.parse(inStr.substring(inStr.lastIndexOf("\n")));
+        let str = "";
+        str += "html{\n";
+        for (let i = 0; i < palette.length; i++) {
+          str += "/*" + palette[i].name + "*/\n";
+          str += "  --colour-" + (i + 1) + "-h: " + palette[i].hsl[0] + ";\n  --colour-" + (i + 1) + "-s: " + palette[i].hsl[1] + "\%;\n  --colour-" + (i + 1) + "-l: " + palette[i].hsl[2] + "\%;\n\n";
+        }
+        if (document.getElementById('overrideLightness').checked) {
+          str += "  --colour-1-l: 20%;\n";
+          str += "  --colour-2-l: 90%;\n";
+          str += "  --colour-3-l: 30%;\n";
+          str += "  --colour-4-l: 70%;\n";
+          str += "  --colour-5-l: 70%;\n";
+        }
+        str += "}\n";
+        document.getElementById('cssResult').value = str;
+      } catch (e) {
+        alert(e);
+        console.log(e);
+      }
+    }
+  </script>
+</head>
+<body>
+<p>You can generate a colour scheme using <a href="https://coolors.co/">https://coolors.co/</a>, then export it as '<b>code</b>'
+   and paste it into the input textarea. Then you can copy the Output textarea into colours.css.</p>
+<h2>Input</h2>
+<textarea cols="80" id="colorcode" rows="20"></textarea>
+<p><input id="overrideLightness" type="checkbox">Override lightness (suggest which colours should be dark/light, and
+                                                 only use the Hue and Saturation values from the input).</p>
+<p>
+  <button onclick="generateCSS()">Generate</button>
+</p>
+<h2>Output</h2>
+<textarea cols="80" id="cssResult" rows="20"></textarea>
+<h3>Examples</h3>
+<p>You can then modify your CSS to use these colours using code similar to the below:</p>
+<p><code>--colour-1</code> is defined in common.css and will automatically create a colour based on the h s and l values
+                           defined in colours.css</p>
+<pre>
+    .myClass{
+        color: var(--colour-1); /*This will set the text colour of all elements with a class of 'myClass'*/
+        background-color: var(--colour-2); /*This will set the background colour of all elements with a class of 'myClass'*/
+    }
+</pre>
+</body>
+</html>
