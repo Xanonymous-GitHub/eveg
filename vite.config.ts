@@ -1,9 +1,13 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 export default defineConfig({
   root: './src',
   publicDir: '../public',
+  plugins: [
+    createHtmlPlugin({ minify: true }),
+  ],
   build: {
     outDir: '../dist',
     target: 'esnext',
@@ -17,5 +21,12 @@ export default defineConfig({
         instructions: resolve(__dirname, './src/instructions.html'),
       },
     },
+  },
+  esbuild: {
+    legalComments: 'none',
+    minifySyntax: true,
+    minifyWhitespace: true,
+    minifyIdentifiers: true,
+    platform: 'browser',
   },
 })
