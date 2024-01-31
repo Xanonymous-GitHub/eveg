@@ -16,7 +16,7 @@ const cardTemplate = `<div class="shop-product" data-num="[EVEGPRODUCT#]">
 <div class="shop-product-details shop-product-price" data-field="price" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-details shop-product-units" data-field="units" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-buying" data-num="[EVEGPRODUCT#]">
-<div class="productBasketDiv"><button class="addToBasket">Add to Basket</button>
+<div class="productBasketDiv"><button class="addToBasket btn btn-warning">Add to Basket</button>
 <div class="adjustDiv"><button class="btn adjustDown">-</button>
 <input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
 <button class="btn adjustUp">+</button></div></div></div></div></div>`
