@@ -9,7 +9,7 @@ const basket = {}
 // The adjustDown and adjustUp buttons have their behaviour specified below, but you can change this if you like
 // To change the quantity of a product, change the value of the input (with the class of buyInput), you can then recalculate the basket with refreshBasket()
 // Or you can adjust the basket object via javascript and call updateQuantityInputs() and refreshBasket()
-const cardTemplate = `<div class="shop-product card" data-num="[EVEGPRODUCT#]">
+const cardTemplate = `<div class="shop-product" data-num="[EVEGPRODUCT#]">
 <div class="shop-product-details shop-product-title card__title" data-field="title" data-num="[EVEGPRODUCT#]"></div>
 <div class="card__content" data-num="[EVEGPRODUCT#]">
 <div class="shop-product-details shop-product-img" data-field="img" data-num="[EVEGPRODUCT#]"></div>
