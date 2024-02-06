@@ -1,6 +1,3 @@
-// Import bootstrap's scss to make sure it is bundled.
-import './css/main.scss'
-
 // Import bootstrap's javascript to make sure it is bundled.
 // This can be optimized by importing only the components that are used.
 import 'bootstrap/js/dist/base-component'
