@@ -1,4 +1,3 @@
-// eslint.config.js
 import {
   combine,
   comments,
@@ -25,7 +24,11 @@ export default combine(
   jsdoc(),
   imports(),
   unicorn(),
-  typescript(/* Options */),
+  typescript({
+    overrides: {
+      'node/prefer-global/process': 'off',
+    },
+  }),
   stylistic(),
   vue(),
   jsonc(),
