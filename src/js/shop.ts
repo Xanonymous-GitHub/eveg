@@ -58,9 +58,11 @@ function init() {
   if (Cookies.get('cookieMessageSeen') === 'true')
     cookieMsgModal?.classList.add('d-none')
 
-  allProductElements.push(...createProductCards(products, onAddToBasketClicked))
-  displayedProductElements.push(...allProductElements)
-  updateDisplayedProductCards()
+  setTimeout(() => {
+    allProductElements.push(...createProductCards(products, onAddToBasketClicked))
+    displayedProductElements.push(...allProductElements)
+    updateDisplayedProductCards()
+  })
 }
 
 function onAddToBasketClicked(productId: number, requestedQuantity: number) {
