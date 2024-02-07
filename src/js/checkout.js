@@ -1,4 +1,5 @@
-import { getCookie, initProducts, productDetails } from './products.js'
+import Cookies from "js-cookie";
+import { products } from './products.ts'
 
 const creditCardShown = false
 
@@ -7,7 +8,7 @@ const creditCardShown = false
 */
 function init() {
   // initProducts takes a callback function - when the products are loaded the basket will be recalculated
-  initProducts(calculateBasket)
+  calculateBasket()
   resetListeners()
 }
 
@@ -35,14 +36,15 @@ function showCreditCardPage() {
 function calculateBasket() {
   let thisProduct
   let total = 0
-  const basket = JSON.parse(getCookie('basket'))
+  const cookies = Cookies.get()
+  const basket = JSON.parse(cookies['basket'])
   document.querySelector('.checkoutList').innerHTML = ''
   for (const productID in basket) {
     const quantity = basket[productID]
-    const price = productDetails[productID].price
+    const price = products[productID].unitPrice
     const productTotal = price * quantity
     total = total + productTotal
-    const rowHTML = `<td>${productDetails[productID].name}</td><td>${quantity}</td><td>${(price / 100).toFixed(2)}</td><td>£${(productTotal / 100).toFixed(2)}</td>`
+    const rowHTML = `<td>${products[productID].name}</td><td>${quantity}</td><td>${(price / 100).toFixed(2)}</td><td>£${(productTotal / 100).toFixed(2)}</td>`
     thisProduct = document.createElement('tr')
     thisProduct.innerHTML = rowHTML
     document.querySelector('.checkoutList').appendChild(thisProduct)

@@ -9,17 +9,17 @@ const basket = {}
 // The adjustDown and adjustUp buttons have their behaviour specified below, but you can change this if you like
 // To change the quantity of a product, change the value of the input (with the class of buyInput), you can then recalculate the basket with refreshBasket()
 // Or you can adjust the basket object via javascript and call updateQuantityInputs() and refreshBasket()
-const cardTemplate = `<div class="shop-product" data-num="[EVEGPRODUCT#]">
-<div class="shop-product-details shop-product-title card__title" data-field="title" data-num="[EVEGPRODUCT#]"></div>
-<div class="card__content" data-num="[EVEGPRODUCT#]">
-<div class="shop-product-details shop-product-img" data-field="img" data-num="[EVEGPRODUCT#]"></div>
-<div class="shop-product-details shop-product-price" data-field="price" data-num="[EVEGPRODUCT#]"></div>
-<div class="shop-product-details shop-product-units" data-field="units" data-num="[EVEGPRODUCT#]"></div>
-<div class="shop-product-buying" data-num="[EVEGPRODUCT#]">
-<div class="productBasketDiv"><button class="addToBasket btn btn-warning">Add to Basket</button>
-<div class="adjustDiv"><button class="btn adjustDown">-</button>
+const cardTemplate = `<div class="shop-product card p-2 w-100" data-num="[EVEGPRODUCT#]">
+<div class="shop-product-details shop-product-title card__title text-center" data-field="title" data-num="[EVEGPRODUCT#]"></div>
+<div class="card__content d-flex flex-column justify-content-center" data-num="[EVEGPRODUCT#]">
+<div class="shop-product-details shop-product-img m-auto" data-field="img" data-num="[EVEGPRODUCT#]"></div>
+<div class="shop-product-details shop-product-price m-auto" data-field="price" data-num="[EVEGPRODUCT#]"></div>
+<div class="shop-product-details shop-product-units m-auto" data-field="units" data-num="[EVEGPRODUCT#]"></div>
+<div class="shop-product-buying m-auto" data-num="[EVEGPRODUCT#]">
+<div class="productBasketDiv m-auto"><button class="addToBasket m-auto d-block btn btn-warning">Add to Basket</button>
+<div class="adjustDiv my-2"><span class="m-auto d-flex justify-content-center"><button class="btn adjustDown">-</button>
 <input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
-<button class="btn adjustUp">+</button></div></div></div></div></div>`
+<button class="btn adjustUp">+</button></span></div></div></div></div></div>`
 
 function init() {
   const toggleButton = document.getElementsByClassName('toggle-button')[0]
