@@ -7,7 +7,7 @@ const cardTemplate: string = `
     </div>
     <div class="card__content d-flex flex-column justify-content-center" data-num="{{ ID }}">
       <div class="shop-product-details shop-product-img m-auto" data-field="img" data-num="{{ ID }}">
-        <img src="{{ IMG_SRC }}" alt=''>
+        <img src="{{ IMG_SRC }}" class="img-fluid" alt="" loading="lazy">
       </div>
       <div class="shop-product-details shop-product-price m-auto" data-field="price" data-num="{{ ID }}">
         <span>{{ PRICE }}</span>
