@@ -8,7 +8,7 @@
     "build": "tsc && vite build --emptyOutDir",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint ./src --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
