@@ -7,3 +7,5 @@ export interface Product {
   unit: string
   unitPrice: number
 }
+
+export type Basket = Map<number, number>
