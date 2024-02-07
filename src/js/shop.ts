@@ -14,7 +14,7 @@ const cookieOptions: Cookies.CookieAttributes = {
 
 addEventListener('DOMContentLoaded', () => init())
 
-export function init() {
+function init() {
   const toggleButton = document.querySelectorAll('.toggle-button')[0]
   const hero = document.querySelectorAll('.hero')[0]
   const navbarLinks = document.querySelectorAll('.navbar-links')[0]
