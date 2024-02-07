@@ -1,4 +1,5 @@
-import { getCookie, initProducts, productDetails, setCookie } from './products.js'
+import Cookies from 'js-cookie'
+import { products } from './products.ts'
 
 let searchStr = ''
 const basket = {}
@@ -54,14 +55,14 @@ function init() {
 
   // Close the cookies message
   document.getElementById('acceptCookies').addEventListener('click', () => {
-    setCookie('cookieMessageSeen', true)
+    Cookies.set('cookieMessageSeen', 'true')
     document.getElementById('cookieMessage').style.display = 'none'
   })
 
-  if (getCookie('cookieMessageSeen') === 'true')
+  if (Cookies.get().cookieMessageSeen === 'true')
     document.getElementById('cookieMessage').style.display = 'none'
 
-  initProducts(redraw)
+  redraw()
 }
 
 /*
@@ -133,17 +134,7 @@ function decrement(ev) {
 }
 
 function filterFunction(a) {
-  /* This demonstrates how to filter based on the search term */
   return a.name.toLowerCase().includes(searchStr.toLowerCase())
-
-  // If you wanted to just filter based on fruit/veg you could do something like this:
-  // return a.type == 'veg';
-  // return a.type == 'fruit';
-  // return true;
-}
-
-function sortFunction(a, b) {
-  return a.price > b.price
 }
 
 // Redraw all products based on the card template
@@ -151,14 +142,14 @@ function redraw() {
   // Reset the product list (there are possibly more efficient ways of doing this, but this is simplest)
   document.querySelector('.productList').innerHTML = ''
 
-  const shownProducts = productDetails.filter(filterFunction)
+  const shownProducts = products.filter(filterFunction)
 
-  shownProducts.sort(sortFunction)
+  shownProducts.sort((a, b) => a.unitPrice - b.unitPrice)
 
   const numProducts = shownProducts.length
 
   for (let i = 0; i < numProducts; i++) {
-    const cardHTML = cardTemplate.replaceAll('[EVEGPRODUCT#]', shownProducts[i].productID)
+    const cardHTML = cardTemplate.replaceAll('[EVEGPRODUCT#]', shownProducts[i].id.toString())
     const thisProduct = document.createElement('div')
     thisProduct.innerHTML = cardHTML
     document.querySelector('.productList').appendChild(thisProduct.firstChild)
@@ -169,16 +160,16 @@ function redraw() {
     const num = element.getAttribute('data-num')
     switch (field) {
       case 'title':
-        element.textContent = productDetails[num].name
+        element.textContent = products[num].name
         break
       case 'img':
-        element.innerHTML = `<span class="imgspacer"></span><img src="images/${productDetails[num].image}" alt=''>`
+        element.innerHTML = `<span class="imgspacer"></span><img src="images/${products[num].imgName}" alt=''>`
         break
       case 'price':
-        element.innerHTML = `<span>£${(productDetails[num].price / 100).toFixed(2)}</span>`
+        element.innerHTML = `<span>£${(products[num].unitPrice / 100).toFixed(2)}</span>`
         break
       case 'units':
-        element.innerHTML = `<span>${productDetails[num].packsize} ${productDetails[num].units}</span>`
+        element.innerHTML = `<span>${products[num].quantity} ${products[num].unit}</span>`
         break
     }
   })
@@ -205,10 +196,10 @@ function refreshBasket() {
   let total = 0
   for (const productID in basket) {
     const quantity = basket[productID]
-    const price = productDetails[productID].price
+    const price = products[productID].unitPrice
     total = total + (price * quantity)
   }
-  setCookie('basket', JSON.stringify(basket))
+  Cookies.set('basket', JSON.stringify(basket))
   try {
     document.querySelector('#basketNumTotal').innerHTML = (total / 100).toFixed(2)
   }

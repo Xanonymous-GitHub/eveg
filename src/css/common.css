@@ -14,6 +14,7 @@ button {
     height: 8rem;
     object-fit: cover;
     vertical-align: middle;
+    border-radius: 50%;
 }
 
 .shop-product-desc {
@@ -24,9 +25,6 @@ button {
     font-size: 200%;
 }
 
-.shop-product-price {
-    float: left;
-}
 
 .searchbuttons span {
     color: white;
@@ -86,9 +84,7 @@ html {
 
 
 .shop-product {
-    width: 20%;
     float: left;
-
 }
 
 .menu {

@@ -14,3 +14,13 @@ h1 {
     text-align: center;
     font-size: xxx-large;
 }
+
+.stupid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(min(100%,15rem),1fr));
+    grid-template-rows: auto;
+    justify-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    overflow-y: scroll;
+}
