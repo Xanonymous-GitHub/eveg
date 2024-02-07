@@ -32,16 +32,7 @@ button {
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.25em;
-    padding: 0 1em;
 }
-
-.search-bar.active {
-    display: flex;
-    font-size: large;
-    justify-content: flex-end;
-    /* padding-right: 1em; */
-}
-
 
 .searchbox {
     margin-right: 1em;
@@ -57,13 +48,6 @@ button {
     background-color: rgba(255, 255, 255, 0.9);
     color: black;
     width: 20em;
-}
-
-
-.search-bar {
-    display: none;
-    padding-bottom: 18px;
-    padding-top: 4px;
 }
 
 .searchbuttons a span {
@@ -216,7 +200,6 @@ html {
     z-index: -1;
     display: block;
     width: 100%;
-    height: var(--hero-height);
 }
 
 * {
@@ -235,7 +218,6 @@ html {
 
 .hero {
     text-align: center;
-    height: var(--hero-height);
 }
 
 .hero div.title {
