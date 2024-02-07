@@ -32,7 +32,10 @@ const cardTemplate: string = `
 `
 
 // TODO: Migrate to TSX or WebComponents.
-export function createProductCards(products: Array<Product>, onAddToBasketRequested: (productId: number, requestedQuantity: number) => void): Array<HTMLDivElement> {
+export function createProductCards(
+  products: Array<Product>,
+  onAddToBasketRequested: (productId: number, requestedQuantity: number) => void,
+): Array<HTMLDivElement> {
   return products.map((product) => {
     const cardHTML = cardTemplate
       .replaceAll('{{ ID }}', product.id.toString())
