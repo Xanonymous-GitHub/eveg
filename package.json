@@ -13,6 +13,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.4",
     "@types/bootstrap": "^5.2.10",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.11.16",
     "eslint": "^8.56.0",
     "sass": "^1.70.0",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.2"
+    "bootstrap": "^5.3.2",
+    "js-cookie": "^3.0.5"
   }
 }
