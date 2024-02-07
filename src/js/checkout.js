@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie'
 import { products } from './products.ts'
 
 const creditCardShown = false
@@ -37,7 +37,7 @@ function calculateBasket() {
   let thisProduct
   let total = 0
   const cookies = Cookies.get()
-  const basket = JSON.parse(cookies['basket'])
+  const basket = JSON.parse(cookies.basket)
   document.querySelector('.checkoutList').innerHTML = ''
   for (const productID in basket) {
     const quantity = basket[productID]
