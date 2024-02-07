@@ -19,9 +19,9 @@ const cardTemplate: string = `
         <div class="productBasketDiv m-auto">
           <button class="addToBasket m-auto d-block btn btn-warning">Add to Basket</button>
           <div class="adjustDiv my-2">
-            <span class="m-auto d-flex justify-content-center">
+            <span class="m-auto d-flex justify-content-center input-group">
               <button class="btn adjustDown">-</button>
-              <input class="buyInput" data-num="{{ ID }}" min="0" type="number" value="0">
+              <input class="buyInput form-control" data-num="{{ ID }}" min="0" type="number" value="0">
               <button class="btn adjustUp">+</button>
             </span>
           </div>
