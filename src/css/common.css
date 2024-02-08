@@ -100,13 +100,14 @@ html {
 }
 
 .about {
-
     clear: both;
-    height: 20px;
-    padding: 2em;
+    padding: 1rem;
+    height: 60px;
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    position: relative;
+    width: 100vw;
 }
 
 
@@ -256,8 +257,7 @@ p {
 
 body {
     background-color: var(--colour-2);
-    margin: 0;
-    padding: 0;
+    margin-bottom: 2rem;
 }
 
 a {
