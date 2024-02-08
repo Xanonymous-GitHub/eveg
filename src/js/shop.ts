@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
 import { createProductCards } from './productCard.ts'
 import type { Basket } from './typing'
@@ -111,7 +112,11 @@ function onSearchSubmitted() {
 
 function updateDisplayedProductCards() {
   const productContainer = document.querySelector('.productList') as HTMLDivElement | null
-  productContainer?.replaceChildren()
-  for (const card of displayedProductElements)
-    productContainer?.appendChild(card)
+  const lazyLoader = new LazyLoad({
+    container: productContainer!,
+  })
+
+  productContainer?.replaceChildren(...displayedProductElements)
+
+  lazyLoader.update()
 }

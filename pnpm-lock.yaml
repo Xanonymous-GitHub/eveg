@@ -14,6 +14,9 @@ dependencies:
   js-cookie:
     specifier: ^3.0.5
     version: 3.0.5
+  vanilla-lazyload:
+    specifier: ^17.8.5
+    version: 17.8.5
 
 devDependencies:
   '@antfu/eslint-config':
@@ -3099,6 +3102,10 @@ packages:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
     dev: true
+
+  /vanilla-lazyload@17.8.5:
+    resolution: {integrity: sha512-SQdQztlVUJqCbyU15zobpAcoTucCzdJiDIEfqinZDdwifhZxQ5H2j0BJfHlrFxi0lrVAdFBRsICH51YdPv18DQ==}
+    dev: false
 
   /vite-plugin-html@3.2.2(vite@5.0.12):
     resolution: {integrity: sha512-vb9C9kcdzcIo/Oc3CLZVS03dL5pDlOFuhGlZYDCJ840BhWl/0nGeZWf3Qy7NlOayscY4Cm/QRgULCQkEZige5Q==}
