@@ -1,6 +1,18 @@
 /*Common CSS to be shown on all versions (mobile/desktop)*/
-.productBasketDiv {
-    width: 8em;
+
+html {
+    box-sizing: border-box;
+    min-width: 100vw;
+    width: 100vw;
+    max-width: 100vw;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+img:not([src]):not([srcset]) {
+    visibility: hidden;
 }
 
 button {
@@ -268,45 +280,33 @@ a:visited {
     color: var(--colour-5);
 }
 
+#customerDetails button {
+    @media (max-width: 576px) {
+        font-size: .6rem;
+    }
 
-form.customerDetails {
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    width: 50%;
-}
-
-form.customerDetails label {
-    display: block;
-}
-
-form.customerDetails input {
-    width: 80%;
-}
-
-form.customerDetails button {
-    margin-top: 20px;
-    display: block;
+    @media (min-width: 576px) and (max-width: 768px) {
+        font-size: .9rem;
+    }
 }
 
 .checkoutList {
-    width: 50%;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+    min-height: 1rem;
+    white-space: nowrap;
 }
 
-.checkoutList {
-    text-align: center;
-}
+/* TODO: migrate to scss for using pre-defined breakpoint variables */
+.checkout-area {
+    @media (max-width: 576px) {
+        font-size: .6rem;
+    }
 
-.checkoutList tr td:nth-child(4) {
-    font-weight: bold;
-}
+    @media (min-width: 576px) and (max-width: 768px) {
+        font-size: .8rem;
+    }
 
-.checkoutList tr:last-child {
-    font-weight: bold;
+    @media (min-width: 768px) {
+        max-width: 800px;
+        margin: auto;
+    }
 }
-
-.checkoutList tr:last-child td:first-child {
-    text-align: right;
-}
-
