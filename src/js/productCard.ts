@@ -3,7 +3,7 @@ import type { Product } from './typing.ts'
 const cardTemplate: string = `
   <div class="shop-product card p-2 w-100" data-num="{{ ID }}">
   <div class="shop-product-details shop-product-title card__title text-center" data-field="title" data-num="{{ ID }}">
-    <h3>{{ TITLE }}</h3>
+    <h3 class="text-nowrap overflow-hidden">{{ TITLE }}</h3>
   </div>
   <div class="card__content d-flex flex-column justify-content-center" data-num="{{ ID }}">
     <div class="shop-product-details shop-product-img m-auto" data-field="img" data-num="{{ ID }}">
