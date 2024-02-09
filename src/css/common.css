@@ -98,10 +98,6 @@ html {
     }
 }
 
-.navbar {
-    height: 4em;
-}
-
 .navbar, li ul {
     display: flex;
     justify-content: left;
@@ -121,7 +117,7 @@ html {
     width: 100vw;
 }
 
-.about {
+.about, .navbar {
     @media (max-width: 576px) {
         font-size: .7rem;
     }
