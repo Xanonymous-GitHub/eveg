@@ -16,37 +16,16 @@ const cookieOptions: Cookies.CookieAttributes = {
 addEventListener('DOMContentLoaded', () => init())
 
 function init() {
-  const toggleButton = document.querySelectorAll('.toggle-button')[0]
-  const hero = document.querySelectorAll('.hero')[0]
-  const navbarLinks = document.querySelectorAll('.navbar-links')[0]
-
-  // When the toggle button is pressed (if visible by the screen size, the menu is shown)
-  toggleButton.addEventListener('click', () => {
-    navbarLinks.classList.toggle('active')
-    hero.classList.toggle('menuactive')
+  setupSearchEventListeners()
+  setupCookieModalEventListeners()
+  setTimeout(() => {
+    allProductElements.push(...createProductCards(products, onAddToBasketClicked))
+    displayedProductElements.push(...allProductElements)
+    updateDisplayedProductCards()
   })
+}
 
-  const searchBar = document.querySelector('.search-bar') as HTMLDivElement
-  // Show the search bar when the search link is pressed
-  document.querySelector('#search-link')?.addEventListener('click', () => {
-    searchBar.classList.remove('invisible')
-    setTimeout(() => (document.querySelector('#searchbox') as HTMLInputElement | null)?.focus())
-  })
-
-  // Close the search bar
-  document.querySelector('#searchbutton')?.addEventListener('click', () => {
-    searchStr = (document.querySelector('#searchbox') as HTMLInputElement).value.trim()
-    onSearchSubmitted()
-  })
-
-  // Close the search bar
-  document.querySelector('#closesearchbutton')?.addEventListener('click', () => {
-    searchStr = ''
-    searchBar.classList.add('invisible')
-    setTimeout(onSearchSubmitted)
-  })
-
-  // Close the cookies message
+function setupCookieModalEventListeners() {
   const cookieMsgModal = document.querySelector('#cookieMessage') as HTMLDivElement | null
   document.querySelector('#acceptCookies')?.addEventListener('click', () => {
     Cookies.set('cookieMessageSeen', 'true', {
@@ -58,11 +37,30 @@ function init() {
 
   if (Cookies.get('cookieMessageSeen') === 'true')
     cookieMsgModal?.classList.add('d-none')
+}
 
-  setTimeout(() => {
-    allProductElements.push(...createProductCards(products, onAddToBasketClicked))
-    displayedProductElements.push(...allProductElements)
-    updateDisplayedProductCards()
+function setupSearchEventListeners() {
+  const searchBox = document.querySelector('#searchbox') as HTMLInputElement
+
+  searchBox?.addEventListener('input', () => {
+    searchStr = searchBox.value.trim()
+    if (searchStr === '')
+      onSearchSubmitted()
+  })
+
+  document.querySelector('#searchbutton')?.addEventListener('click', (e) => {
+    e.preventDefault()
+    searchStr = searchBox.value.trim()
+    onSearchSubmitted()
+  })
+
+  document.querySelector('#closesearchbutton')?.addEventListener('click', (e) => {
+    e.preventDefault()
+    searchBox.value = ''
+    if (searchStr !== '') {
+      searchStr = ''
+      onSearchSubmitted()
+    }
   })
 }
 

@@ -11,49 +11,42 @@
   <script src="main.ts" type="module" defer></script>
   <title>E-Veg Shop</title>
 </head>
-<body class="min-vh-100">
+<body>
 <div class="hero">
-  <div class="title">E-Veg</div>
-  <nav class="navbar text-nowrap">
-    <div class="toggle-wrapper">
-      <a class="toggle-button" href="#">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+  <div class="title text-nowrap">E-Veg</div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <img src="/favicon.ico" alt="" class="d-inline-block align-text-top" width="36" height="36">
+      <a class="navbar-brand text-black mx-2" href="/">
+        Shop
       </a>
-    </div>
-    <div class="navbar-links">
-      <ul>
-        <li><a href="#"><span>Contact</span></a></li>
-        <li><a href="#" id="search-link"><span>Search</span></a></li>
-        <li><a href="#"><span>About</span></a></li>
-        <li class="spacer">&nbsp;</li>
-        <li class="welcome"><a>Welcome, Test User</a></li>
-        <li>
-          <a class="basket" href="checkout.html">
-            <span>Checkout</span>
-          </a>
-        </li>
-      </ul>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/checkout.html">Checkout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">About</a>
+          </li>
+        </ul>
+        <form class="d-flex search flex-lg-row flex-column align-items-center" role="search">
+          <input class="form-control me-2" id="searchbox" type="search" placeholder="Search" aria-label="Search">
+          <span class="d-flex flex-row">
+            <button id="searchbutton" class="btn btn-success btn-sm mx-1" type="submit">Search</button>
+            <button id="closesearchbutton" class="btn btn-outline-danger btn-sm mx-1" type="submit">Cancel</button>
+          </span>
+        </form>
+      </div>
     </div>
   </nav>
-  <div class="search-bar d-flex flex-row justify-content-end text-lg-center invisible">
-    <input id="searchbox" type="text"/>
-    <div class="searchbuttons">
-      <a href="#" id="searchbutton">
-          <span>
-          search
-          </span>
-      </a>
-      <a href="#" id="closesearchbutton">
-          <span>
-          close
-          </span>
-      </a>
-    </div>
-  </div>
 </div>
-<div class="productList stupid-grid">
+<div class="productList stupid-grid my-2">
 </div>
 <footer class="about">
   <div class="position-relative w-100">&copy; 2021 InterVeg Coventry Ltd.</div>
