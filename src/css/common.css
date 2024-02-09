@@ -73,6 +73,14 @@ html {
 }
 
 .productList {
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+
+    -moz-transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    transition: all 1s ;
+
     @media (min-width: 768px) {
         margin-left: 2rem;
         margin-right: 2rem;
