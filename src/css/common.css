@@ -3,7 +3,6 @@
 html {
     box-sizing: border-box;
     min-width: 100vw;
-    width: 100vw;
     max-width: 100vw;
 }
 
@@ -46,22 +45,6 @@ button {
     padding-top: 0.25em;
 }
 
-.searchbox {
-    margin-right: 1em;
-    border-radius: 2em;
-    box-shadow: 5px 5px #808080;
-    border: 0;
-    border-bottom: 1px solid #555;
-    width: 0;
-    padding-left: 2em;
-    padding-right: 2em;
-    font-size: inherit;
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: black;
-    width: 20em;
-}
-
 .searchbuttons a span {
     color: black;
 }
@@ -90,20 +73,10 @@ html {
 }
 
 .productList {
-    margin-bottom: 2rem;
-
     @media (min-width: 768px) {
         margin-left: 2rem;
         margin-right: 2rem;
     }
-}
-
-.navbar, li ul {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    color: white;
-    padding-top: 0.5em;
 }
 
 .about {
@@ -117,7 +90,7 @@ html {
     width: 100vw;
 }
 
-.about, .navbar {
+.about {
     @media (max-width: 576px) {
         font-size: .7rem;
     }
@@ -127,30 +100,12 @@ html {
     }
 }
 
-
-.navbar-links ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.navbar-links {
-    display: flex;
-    width: 100%;
-}
-
 .spacer {
     flex-grow: 1;
     /* width: 10%; */
 }
 
-.navbar-links li {
-    list-style: none;
-}
-
-.navbar-links li a, .subnavbar-links li a {
+li a, .subnavbar-links li a {
     color: var(--colour-1);
     text-decoration: none;
     font-size: 1.5em;
@@ -159,23 +114,6 @@ html {
     text-align: center;
     padding: 0 1rem 0.5rem 1rem;
     display: block;
-}
-
-.navbar-links ul li span {
-    padding-bottom: 2px;
-}
-
-.navbar-links ul li ul {
-    display: none;
-}
-
-.navbar-links ul li:hover ul {
-    display: flex;
-}
-
-.navbar-links li ul {
-    position: absolute;
-    display: flex;
 }
 
 .toggle-wrapper {
@@ -275,6 +213,10 @@ p {
 body {
     background-color: var(--colour-2);
     margin-bottom: 2rem;
+    max-width: 100vw;
+
+    /* FIXME: Unexpected page overflow on x axis. */
+    overflow-x: hidden;
 }
 
 a {
@@ -316,5 +258,19 @@ a:visited {
         max-width: 800px;
         margin: auto;
         width: 75%;
+    }
+}
+
+.search {
+    @media (min-width: 576px) and (max-width: 992px) {
+        max-width: 65%;
+        margin: auto;
+    }
+}
+
+.search * {
+    @media (max-width: 992px) {
+        margin-top: .25rem;
+        margin-bottom: .25rem;
     }
 }
