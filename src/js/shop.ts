@@ -55,8 +55,8 @@ function setupSearchEventListeners() {
 
   document.querySelector('#closesearchbutton')?.addEventListener('click', (e) => {
     e.preventDefault()
-    searchBox.value = ''
-    if (searchStr !== '') {
+    if (searchBox.value !== '') {
+      searchBox.value = ''
       searchStr = ''
       onSearchSubmitted()
     }
@@ -91,20 +91,21 @@ function updateBasketTotalNum() {
 }
 
 function onSearchSubmitted() {
-  if (searchStr === undefined || searchStr === '') {
-    displayedProductElements = allProductElements
-  }
-  else {
-    displayedProductElements = allProductElements.filter((productCard) => {
-      const shownName = productCard.querySelector('.shop-product-title')?.textContent
-      if (!shownName)
-        return false
+  const productContainer = document.querySelectorAll('.productList > .shop-product.card')
+  // toggle visibility of product cards in the productContainer based on search string
+  productContainer.forEach((element) => {
+    const productTitle = element.querySelector('.shop-product-title') as HTMLDivElement | null
+    if (productTitle === null)
+      return
 
-      return shownName.toLowerCase().includes(searchStr.toLowerCase())
-    })
-  }
+    const title = productTitle.textContent
+    if (title === null)
+      return
 
-  updateDisplayedProductCards()
+    const titleLower = title.toLowerCase()
+    const searchStrLower = searchStr.toLowerCase().trim()
+    element.classList.toggle('d-none', !(searchStrLower === '') && !titleLower.includes(searchStrLower))
+  })
 }
 
 function updateDisplayedProductCards() {
