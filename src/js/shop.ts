@@ -1,13 +1,12 @@
 import Cookies from 'js-cookie'
 import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
-import { createProductCards } from './productCard.ts'
+import { createProductCard } from './productCard.ts'
 import type { Basket } from './typing'
 
 let searchStr = ''
 const basket: Basket = new Map<number, number>()
 const allProductElements: Array<HTMLDivElement> = []
-let displayedProductElements: Array<HTMLDivElement> = []
 const cookieOptions: Cookies.CookieAttributes = {
   secure: true,
   sameSite: 'strict',
@@ -18,9 +17,9 @@ addEventListener('DOMContentLoaded', () => init())
 function init() {
   setupSearchEventListeners()
   setupCookieModalEventListeners()
-  setTimeout(() => {
-    allProductElements.push(...createProductCards(products, onAddToBasketClicked))
-    displayedProductElements.push(...allProductElements)
+
+  setTimeout(async () => {
+    await asyncMakeProductCardElements()
     updateDisplayedProductCards()
   })
 }
@@ -116,7 +115,39 @@ function updateDisplayedProductCards() {
     container: mainElement!,
   })
 
-  productContainer?.replaceChildren(...displayedProductElements)
+  productContainer?.replaceChildren(...allProductElements)
 
   lazyLoader.update()
+}
+
+async function asyncMakeProductCardElements() {
+  const mainElement = document.querySelector('main') as HTMLElement | null
+
+  const observerOptions = {
+    root: mainElement,
+    rootMargin: '100px',
+    threshold: 0,
+  } satisfies IntersectionObserverInit
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.classList.toggle('hide', !entry.isIntersecting)
+    })
+  }, observerOptions)
+
+  const creationTasks = await Promise.allSettled(
+    products.map(async (product) => {
+      const productCard = createProductCard(product, onAddToBasketClicked)
+      observer.observe(productCard)
+      return productCard
+    }),
+  )
+
+  allProductElements.push(...creationTasks.map((result) => {
+    if (result.status === 'fulfilled')
+      return result.value
+
+    console.error(result.reason)
+    return document.createElement('div')
+  }))
 }

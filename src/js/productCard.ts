@@ -1,13 +1,12 @@
 import type { Product } from './typing.ts'
 
-const cardTemplate: string = `
+const cardTemplateStr: string = `
   <div class="shop-product card p-2 w-100" data-num="{{ ID }}">
   <div class="shop-product-details shop-product-title card__title text-center" data-field="title" data-num="{{ ID }}">
     <h3 class="text-nowrap overflow-hidden">{{ TITLE }}</h3>
   </div>
   <div class="card__content d-flex flex-column justify-content-center" data-num="{{ ID }}">
     <div class="shop-product-details shop-product-img m-auto" data-field="img" data-num="{{ ID }}">
-      <img src="{{ IMG_SRC }}" class="img-fluid lazy" alt="" loading="lazy">
     </div>
     <div class="shop-product-details shop-product-price m-auto" data-field="price" data-num="{{ ID }}">
       <span>{{ PRICE }}</span>
@@ -31,38 +30,50 @@ const cardTemplate: string = `
 </div>
 `
 
+function createProductImageElement(src: string): HTMLImageElement {
+  const img = document.createElement('img')
+  img.src = src
+  img.className = 'img-fluid lazy'
+  img.alt = ''
+  img.loading = 'lazy'
+  return img
+}
+
 // TODO: Migrate to TSX or WebComponents.
-export function createProductCards(
-  products: Array<Product>,
+export function createProductCard(
+  product: Product,
   onAddToBasketRequested: (productId: number, requestedQuantity: number) => void,
-): Array<HTMLDivElement> {
-  return products.map((product) => {
-    const cardHTML = cardTemplate
-      .replaceAll('{{ ID }}', product.id.toString())
-      .replace('{{ TITLE }}', product.name)
-      .replace('{{ IMG_SRC }}', `images/${product.imgName}`)
-      .replace('{{ PRICE }}', `£${(product.unitPrice / 100).toFixed(2)}`)
-      .replace('{{ UNITS }}', `${product.quantity} ${product.unit}`)
+): HTMLDivElement {
+  const cardHTMLStr = cardTemplateStr
+    .replaceAll('{{ ID }}', product.id.toString())
+    .replace('{{ TITLE }}', product.name)
+    .replace('{{ PRICE }}', `£${(product.unitPrice / 100).toFixed(2)}`)
+    .replace('{{ UNITS }}', `${product.quantity} ${product.unit}`)
 
-    const thisProductCard = document.createElement('template')
-    thisProductCard.insertAdjacentHTML('beforeend', cardHTML)
+  const thisProductCardTemplate = document.createElement('template')
+  thisProductCardTemplate.insertAdjacentHTML('beforeend', cardHTMLStr)
+  const thisProductCard = thisProductCardTemplate.firstElementChild as HTMLDivElement
 
-    const inputBox = thisProductCard.querySelector('.buyInput') as HTMLInputElement
+  const inputBox = thisProductCard.querySelector('.buyInput') as HTMLInputElement
 
-    thisProductCard.querySelector('.adjustUp')?.addEventListener('click', () => {
-      inputBox.value = (Number.parseInt(inputBox.value) + 1).toString()
-    })
-
-    thisProductCard.querySelector('.adjustDown')?.addEventListener('click', () => {
-      const newValue = Number.parseInt(inputBox.value) - 1
-      inputBox.value = newValue < 0 ? '0' : newValue.toString()
-    })
-
-    thisProductCard.querySelector('.addToBasket')?.addEventListener(
-      'click',
-      () => onAddToBasketRequested(product.id, Number.parseInt(inputBox.value)),
-    )
-
-    return thisProductCard.children[0] as HTMLDivElement
+  thisProductCard.querySelector('.adjustUp')?.addEventListener('click', () => {
+    inputBox.value = (Number.parseInt(inputBox.value) + 1).toString()
   })
+
+  thisProductCard.querySelector('.adjustDown')?.addEventListener('click', () => {
+    const newValue = Number.parseInt(inputBox.value) - 1
+    inputBox.value = newValue < 0 ? '0' : newValue.toString()
+  })
+
+  thisProductCard.querySelector('.addToBasket')?.addEventListener(
+    'click',
+    () => onAddToBasketRequested(product.id, Number.parseInt(inputBox.value)),
+  )
+
+  const img = createProductImageElement(`/images/${product.imgName}`)
+  setTimeout((thisProductCard) => {
+    thisProductCard.querySelector('.shop-product-img')?.appendChild(img)
+  }, 0, thisProductCard)
+
+  return thisProductCard
 }
