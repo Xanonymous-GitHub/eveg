@@ -232,6 +232,9 @@ body {
     width: 100%;
     min-height: 100%;
     height: 100%;
+
+    /* FIXME: Unexpected page overflow on x axis. */
+    overflow-x: hidden;
 }
 
 body::after {
