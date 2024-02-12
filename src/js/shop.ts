@@ -73,21 +73,6 @@ function onAddToBasketClicked(productId: number, requestedQuantity: number) {
     basket.set(productId, newQuantity)
 
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
-
-  updateBasketTotalNum()
-}
-
-function updateBasketTotalNum() {
-  const basketTotalNumElement = document.querySelector('#basketNumTotal')
-
-  if (basketTotalNumElement !== null) {
-    const total = Array.from(
-      basket,
-      ([productID, quantity]) => products[productID].unitPrice * quantity,
-    ).reduce((a, b) => a + b, 0)
-
-    basketTotalNumElement.textContent = (total / 100).toFixed(2)
-  }
 }
 
 function onSearchSubmitted() {
