@@ -35,8 +35,14 @@ button {
 
 .shop-product {
     font-size: 200%;
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
 }
 
+.shop-product.hide {
+    opacity: 0;
+    transition: opacity 0.25s ease-in-out;
+}
 
 .searchbuttons span {
     color: white;
@@ -96,6 +102,8 @@ html {
     text-align: center;
     position: relative;
     width: 100%;
+    height: 4rem;
+    margin-bottom: -4rem;
 }
 
 .about {
@@ -223,9 +231,14 @@ body {
     max-width: 100%;
     width: 100%;
     min-height: 100%;
+    height: 100%;
+}
 
-    /* FIXME: Unexpected page overflow on x axis. */
-    overflow-x: hidden;
+body::after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 4rem;
 }
 
 a {
