@@ -109,9 +109,11 @@ function onSearchSubmitted() {
 }
 
 function updateDisplayedProductCards() {
+  const mainElement = document.querySelector('main') as HTMLElement | null
   const productContainer = document.querySelector('.productList') as HTMLDivElement | null
+
   const lazyLoader = new LazyLoad({
-    container: productContainer!,
+    container: mainElement!,
   })
 
   productContainer?.replaceChildren(...displayedProductElements)

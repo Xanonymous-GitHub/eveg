@@ -11,14 +11,13 @@
   <script src="main.ts" type="module" defer></script>
   <title>E-Veg Shop</title>
 </head>
-<body>
-<div class="hero">
-  <div class="title mb-2 text-nowrap">E-Veg</div>
+<body class="d-flex flex-column">
+<div class="sticky-top">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <img src="/favicon.ico" alt="" class="d-inline-block align-text-top" width="36" height="36">
       <a class="navbar-brand text-black mx-2" href="/">
-        Shop
+        E-Veg
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,9 +45,13 @@
     </div>
   </nav>
 </div>
-<div class="productList stupid-grid my-2">
-</div>
-<footer class="about">
+
+<main class="product-list-window">
+  <div class="productList stupid-grid my-2">
+  </div>
+</main>
+
+<footer class="about footer mt-auto">
   <div class="position-relative w-100">&copy; 2021 InterVeg Coventry Ltd.</div>
   <div class="position-relative m-auto">Fresh produce from the Midland's green countryside.</div>
 </footer>
