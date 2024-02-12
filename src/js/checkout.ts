@@ -1,6 +1,6 @@
-import Cookies from 'js-cookie'
 import { products } from './products.ts'
 import type { Basket } from './typing'
+import { readBasketCookie } from './shared'
 
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
@@ -29,16 +29,6 @@ function showCreditCardPage(e: Event) {
     payIFrame.height = '500px'
     document.querySelector('#customerDetails')?.replaceChildren(payIFrame)
   }
-}
-
-function readBasketCookie(): Basket {
-  const cookies = Cookies.get('basket')
-  const entries = Object.entries<number>(JSON.parse(cookies ?? '{}'))
-  const basket = new Map<number, number>()
-  for (const [key, value] of entries)
-    basket.set(Number.parseInt(key), value)
-
-  return basket
 }
 
 function calculateTotalPrice() {

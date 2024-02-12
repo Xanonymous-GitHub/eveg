@@ -3,9 +3,10 @@ import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
 import { createProductCard } from './productCard.ts'
 import type { Basket } from './typing'
+import { readBasketCookie } from './shared'
 
 let searchStr = ''
-const basket: Basket = new Map<number, number>()
+const basket: Basket = readBasketCookie()
 const allProductElements: Array<HTMLDivElement> = []
 const cookieOptions: Cookies.CookieAttributes = {
   secure: true,
