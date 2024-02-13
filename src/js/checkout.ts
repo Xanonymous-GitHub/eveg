@@ -1,6 +1,7 @@
 import { products } from './products.ts'
 import type { Basket } from './typing'
 import { readBasketCookie } from './shared'
+import Swal from 'sweetalert2'
 
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
@@ -16,7 +17,8 @@ function init() {
 }
 
 function resetListeners() {
-  document.querySelector('#paycreditcard')?.addEventListener('click', showCreditCardPage)
+  //document.querySelector('#paycreditcard')?.addEventListener('click', showCreditCardPage)
+  document.querySelector('#paycreditcard')?.addEventListener('click', showSweetAlert)
 }
 
 function showCreditCardPage(e: Event) {
@@ -29,6 +31,28 @@ function showCreditCardPage(e: Event) {
     payIFrame.height = '500px'
     document.querySelector('#customerDetails')?.replaceChildren(payIFrame)
   }
+}
+
+function showSweetAlert(e: Event) {
+  e.preventDefault()
+
+  Swal.fire({
+    title: "Are you sure to checkout?",
+    icon: "warning",
+    confirmButtonText: "Yes",
+    confirmButtonColor: "#d33",
+    showCancelButton: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if (!creditCardShown) {
+        const payIFrame = document.createElement('iframe')
+        payIFrame.src = 'creditcard.html'
+        payIFrame.width = '100%'
+        payIFrame.height = '500px'
+        document.querySelector('#customerDetails')?.replaceChildren(payIFrame)
+      }
+    }
+  });
 }
 
 function calculateTotalPrice() {
