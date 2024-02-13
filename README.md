@@ -42,6 +42,15 @@ such as Bootstrap, because the Bootstrap in this project is configured based on 
     ```shell
     pnpm i
     ```
+    - N.B pnpm may not be installed. If you have npm, you can simply run:
+        ```shell
+        npm install -g pnpm
+        ```
+    - Or, with homebrew or scoop:
+        ```shell
+        brew install pnpm
+        scoop install nodejs-lts pnpm
+        ```
 
 #### Simple steps
 
