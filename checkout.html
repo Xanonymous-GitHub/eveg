@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <link rel="stylesheet" media="screen and (max-width: 600px)" href="shopmobile.css">
+        <link rel="stylesheet" media="screen and (min-width: 601px)" href="shop.css">
+        <link rel="stylesheet" href="common.css">
+        <link rel="stylesheet" href="colours.css">
+        <script src="products.js"></script>
+        <script src="checkout.js"></script>
+        <title>E-Veg Shop</title>
+      </head>
+    <body>
+        <body>
+            <div class="hero"><div class="title">E-Veg</div>
+            <div class="navbar">
+              <div class="toggle-wrapper">
+              <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </a>
+                </div>
+        
+            </div>
+            </div>
+            <h2>Basket Contents</h2>
+            <table class="checkoutList">
+                
+            </table>
+            <div id="customerDetails">
+              <h2>Customer Details</h2>
+
+              <form class="customerDetails" action="creditcard.html">
+                <label for="customerName">Name:</label><input type="text" name="customerName" value="Test User" disabled="true">
+                <label for="emailAddress">Email:</label><input type="text" name="emailAddress" value="testuser@example.org" disabled="true">
+                <label for="contactNumber">Contact number:</label><input type="text" name="contactNumber" value="1234" disabled="true">
+                <label for="delAddress">Delivery Address:</label><input type="text" name="delAddress" value="12 Example Avenue, Example Town, EX4 7AL" disabled="true">
+                <button>Pay by Credit Card</button>
+              </form>
+
+            </div>
+        
+            <div class="about">
+              <div>&copy; 2021 InterVeg Coventry Ltd.</div>
+              <div>Fresh produce from the Midland's green countryside.</div>
+            </div>
+            </div>
+    </body>
+</html>

@@ -1,16 +1,18 @@
 
-.shop-product-title {
+
+
+.shop-product-title{
     padding-bottom: 0.2em;
     padding-top: 0.8em;
-    font-weight: bolder;
+    font-weight:bolder;
     font-size: 2rem;
 }
 
-.shop-product-price {
+.shop-product-price{
     font-weight: bold;
 }
 
-h1 {
+h1{
     text-align: center;
     font-size: xxx-large;
 }

@@ -1,0 +1,74 @@
+html{
+
+/*Hunter Green*/
+  --colour-1-h: 95;
+  --colour-1-s: 26%;
+  --colour-1-l: 27%;
+
+
+/*Light Periwinkle*/
+  --colour-2-h: 233;
+  --colour-2-s: 20%;
+  --colour-2-l: 83%;
+
+
+/*Safety Orange Blaze Orange*/
+  --colour-3-h: 22;
+  --colour-3-s: 100%;
+  --colour-3-l: 50%;
+
+
+/*Field Drab*/
+  --colour-4-h: 39;
+  --colour-4-s: 32%;
+  --colour-4-l: 32%;
+
+
+/*Black Chocolate*/
+  --colour-5-h: 60;
+  --colour-5-s: 15%;
+  --colour-5-l: 12%;
+
+
+/*Pine Tree*/
+  --colour-6-h: 50;
+  --colour-6-s: 22%;
+  --colour-6-l: 16%;
+
+
+/*Olive*/
+  --colour-7-h: 55;
+  --colour-7-s: 57%;
+  --colour-7-l: 38%;
+
+
+/*Dark Khaki*/
+  --colour-8-h: 60;
+  --colour-8-s: 41%;
+  --colour-8-l: 64%;
+
+
+/*Dark Khaki*/
+  --colour-9-h: 60;
+  --colour-9-s: 41%;
+  --colour-9-l: 64%;
+
+
+/*Light Periwinkle*/
+  --colour-10-h: 233;
+  --colour-10-s: 20%;
+  --colour-10-l: 83%;
+
+
+  --colour-1-l: 20%;
+
+  --colour-2-l: 90%;
+
+  --colour-3-l: 30%;
+
+  --colour-4-l: 70%;
+
+  --colour-5-l: 70%;
+
+}
+

@@ -1,78 +1,76 @@
 /*Common CSS to be shown on all versions (mobile/desktop)*/
-.productBasketDiv {
+.productBasketDiv{
     width: 8em;
 }
 
-button {
+button{
     background-color: var(--colour-2);
-    color: var(--colour-1);
+    color:var(--colour-1);
     font-size: 100%;
 }
 
-.shop-product-img img {
+.shop-product-img img{
     width: 8rem;
     height: 8rem;
     object-fit: cover;
     vertical-align: middle;
 }
-
-.shop-product-desc {
-    display: none;
+.shop-product-desc{
+    display:none;
 }
 
-.shop-product {
+.shop-product{
     font-size: 200%;
 }
 
-.shop-product-price {
-    float: left;
+.shop-product-price{
+    float:left;
 }
 
-.searchbuttons span {
+.searchbuttons span{
     color: white;
     width: 1em;
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 0.25em;
+    padding-top:0.25em;
     padding: 0 1em;
 }
-
-.search-bar.active {
-    display: flex;
+.search-bar.active{
+    display:flex;
     font-size: large;
     justify-content: flex-end;
     /* padding-right: 1em; */
 }
 
 
-.searchbox {
+.searchbox{
     margin-right: 1em;
     border-radius: 2em;
     box-shadow: 5px 5px #808080;
-    border: 0;
-    border-bottom: 1px solid #555;
-    width: 0;
+    border:0;
+    border-bottom:1px solid #555;  
+    width:0;
     padding-left: 2em;
     padding-right: 2em;
     font-size: inherit;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color:rgba(255,255,255,0.9);
     color: black;
     width: 20em;
 }
 
 
-.search-bar {
+.search-bar{
     display: none;
     padding-bottom: 18px;
     padding-top: 4px;
 }
 
-.searchbuttons a span {
+.searchbuttons a span{
     color: black;
 }
 
-html {
+html{
     --hero-height: 10em;
     --colour-1: hsl(var(--colour-1-h), var(--colour-1-s), var(--colour-1-l));
     --colour-2: hsl(var(--colour-2-h), var(--colour-2-s), var(--colour-2-l));
@@ -85,33 +83,33 @@ html {
 }
 
 
-.shop-product {
+.shop-product{
     width: 20%;
     float: left;
 
 }
 
-.menu {
-    position: absolute;
+.menu{
+    position:absolute;
     height: 100%;
-    border-right: solid 5px hsl(var(--colour-1-h), var(--colour-1-s), var(--colour-1-l));
+    border-right: solid 5px hsl(var(--colour-1-h),var(--colour-1-s),var(--colour-1-l));
 }
 
-.productList {
+.productList{
     margin-bottom: 2rem;
     margin-left: 2rem;
     margin-right: 2rem;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-top:2rem;
+    padding-bottom:2rem;
+    padding-left:2rem;
+    padding-right:2rem;
 }
 
-.navbar {
+.navbar{
     height: 4em;
 }
 
-.navbar, li ul {
+.navbar,li ul {
     display: flex;
     justify-content: left;
     align-items: center;
@@ -119,10 +117,10 @@ html {
     padding-top: 0.5em;
 }
 
-.about {
+.about{
 
     clear: both;
-    height: 20px;
+    height:20px;
     padding: 2em;
     font-size: 20px;
     font-weight: bold;
@@ -130,32 +128,33 @@ html {
 }
 
 
-.navbar-links ul {
+
+.navbar-links ul{
     margin: 0;
     padding: 0;
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
+    flex-wrap:wrap;
 }
 
-.navbar-links {
+.navbar-links{
     display: flex;
     width: 100%;
 }
 
-.spacer {
+.spacer{
     flex-grow: 1;
     /* width: 10%; */
 }
 
-.navbar-links li {
+.navbar-links li{
     list-style: none;
 }
 
-.navbar-links li a, .subnavbar-links li a {
+.navbar-links li a, .subnavbar-links li a{
     color: var(--colour-1);
     text-decoration: none;
-    font-size: 1.5em;
+    font-size:1.5em;
     font-weight: 600;
     min-width: 4em;
     text-align: center;
@@ -163,52 +162,48 @@ html {
     display: block;
 }
 
-.navbar-links ul li span {
-    padding-bottom: 2px;
+.navbar-links ul li span{
+    padding-bottom:2px;
+}
+.navbar-links ul li ul{
+    display:none;
 }
 
-.navbar-links ul li ul {
-    display: none;
+.navbar-links ul li:hover ul{
+    display:flex;
 }
 
-.navbar-links ul li:hover ul {
+.navbar-links li ul{
+    position:absolute;
     display: flex;
 }
-
-.navbar-links li ul {
-    position: absolute;
-    display: flex;
-}
-
-.toggle-wrapper {
-    position: absolute;
+.toggle-wrapper{
+    position:absolute;
     top: .75rem;
     right: 1rem;
-    background: rgba(0, 0, 0, 0.25);
+    background: rgba(0,0,0,0.25) ;
     /* background: black; */
     padding: 1em;
 }
-
-.toggle-button {
-    display: none;
+.toggle-button{
+    display:none;
     flex-direction: column;
     justify-content: space-between;
     width: 30px;
     height: 21px;
 }
 
-.toggle-button .bar {
+.toggle-button .bar{
     height: 3px;
     width: 100%;
-    background-color: white;
+    background-color:white;
     border-radius: 10px;
 }
 
-.toggle-wrapper {
+.toggle-wrapper{
     display: none;
 }
-
-#searchDesc {
+#searchDesc{
     margin-top: 1em;
     font-size: 2em;
     margin-left: 4rem;
@@ -223,26 +218,26 @@ html {
     height: var(--hero-height);
 }
 
-* {
+*{
     margin: 0;
     /* color: var(--colour-6); */
 }
 
-#basket {
-    position: absolute;
-    display: none;
+#basket{
+    position:absolute;
+    display:none;
     width: 20em;
     height: var(--hero-height);
     background-color: var(--colour-1);
     opacity: 1;
 }
 
-.hero {
+.hero{
     text-align: center;
     height: var(--hero-height);
 }
 
-.hero div.title {
+.hero div.title{
     font-size: 6rem;
     font-weight: 900;
     width: 100%;
@@ -251,15 +246,14 @@ html {
     color: var(--colour-1);
 }
 
-.imgspacer {
-    display: inline-block;
-    height: 100%;
+.imgspacer{
+    display:inline-block;
+    height:100%;
     vertical-align: middle;
 }
 
-#cookieMessage {
+#cookieMessage{
     position: fixed;
-    display: none;
     right: 0px;
     bottom: 0px;
     background-color: hsl(var(--colour-4-h), var(--colour-4-s), var(--colour-4-l));
@@ -267,68 +261,64 @@ html {
     /* display: none; */
 }
 
-#acceptCookies {
+#acceptCookies{
     font-size: 100%;
     margin-top: 2rem;
 }
-
-p {
+p{
     font-size: 150%;
 }
 
-body {
+body{
     background-color: var(--colour-2);
-    margin: 0;
+    margin:0;
     padding: 0;
 }
 
-a {
+a{
     color: var(--colour-4);
 }
-
-a:visited {
+a:visited{
     color: var(--colour-5);
 }
 
 
 form.customerDetails {
-    background: #f9f9f9;
-    border: 1px solid #c1c1c1;
-    width: 50%;
+background: #f9f9f9;
+border: 1px solid #c1c1c1;
+width: 50%;
 }
 
 form.customerDetails label {
-    display: block;
+display: block;
 }
 
 form.customerDetails input {
-    width: 80%;
+width: 80%;
 }
-
-form.customerDetails button {
-    margin-top: 20px;
+form.customerDetails button{
+    margin-top:20px;
     display: block;
 }
 
-.checkoutList {
-    width: 50%;
+.checkoutList{
+    width:50%;
     margin-bottom: 4rem;
     margin-top: 2rem;
 }
 
-.checkoutList {
+.checkoutList{
     text-align: center;
 }
 
-.checkoutList tr td:nth-child(4) {
+.checkoutList tr td:nth-child(4){
+    font-weight: bold;
+}
+.checkoutList tr:last-child{
     font-weight: bold;
 }
 
-.checkoutList tr:last-child {
-    font-weight: bold;
-}
-
-.checkoutList tr:last-child td:first-child {
+.checkoutList tr:last-child td:first-child{
     text-align: right;
 }
 
