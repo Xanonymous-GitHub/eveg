@@ -17,8 +17,13 @@
 </head>
 <body>
 <div class="checkout-area d-flex flex-column justify-content-center position-relative m-auto px-2 mt-3">
+  <div class="d-flex flex-column justify-content-start ml-0 mb-3">
+    <a href="/" class="text-decoration-none">
+      <button class="btn btn-warning"><i class='bi bi-arrow-left'></i> Continue shopping</button>
+    </a>
+  </div>
   <h2 class="text-start px-2">Basket Contents</h2>
-  <table class="checkoutList my-2 text-start table table-striped table-hover">
+  <table class="checkoutList my-2 text-start table table-striped table-hover" aria-describedby="shopping basket">
     <thead>
       <tr>
         <th scope="col">Product</th>
@@ -38,6 +43,9 @@
       </tr>
     </tfoot>
   </table>
+  <div class="d-flex flex-column justify-content-start">
+    <button id="clearbasket" class="clearBasket btn btn-danger"><i class='bi bi-trash'></i> Clear basket</button>
+  </div>
   <hr class="my-3">
   <div class="position-relative w-100 px-2" id="customerDetails">
     <h2>Payment Details</h2>

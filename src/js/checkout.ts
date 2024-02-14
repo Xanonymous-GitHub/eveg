@@ -1,7 +1,8 @@
 import swal from 'sweetalert'
+import Cookies from 'js-cookie'
 import { products } from './products.ts'
 import type { Basket } from './typing'
-import { DialogCloseResult, readBasketCookie } from './shared'
+import { DialogCloseResult, cookieOptions, readBasketCookie } from './shared'
 
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
@@ -18,9 +19,19 @@ function init() {
 
 function resetListeners() {
   document.querySelector('#paycreditcard')?.addEventListener('click', (e) => {
-    showSweetAlert(e, (result) => {
+    showSweetAlert('Are you sure?', e, (result) => {
       if (result === DialogCloseResult.Yes)
         showCreditCardPage(e)
+    }).then()
+  })
+
+  document.querySelector('#clearbasket')?.addEventListener('click', (e) => {
+    showSweetAlert('All items in the basket will be removed. Continue?', e, (result) => {
+      if (result === DialogCloseResult.Yes) {
+        basket.clear()
+        Cookies.remove('basket', cookieOptions)
+        window.location.reload()
+      }
     }).then()
   })
 }
@@ -37,11 +48,11 @@ function showCreditCardPage(e: Event) {
   }
 }
 
-async function showSweetAlert(e: Event, onDialogClose?: (result: DialogCloseResult) => void) {
+async function showSweetAlert(message: string, e: Event, onDialogClose?: (result: DialogCloseResult) => void) {
   e.preventDefault()
 
   const result = await swal({
-    title: 'Are you sure you want to pay?',
+    title: message,
     icon: 'warning',
     buttons: {
       cancel: {
@@ -82,8 +93,10 @@ function updateCheckoutList() {
   const checkoutList = document.querySelector('.checkoutList tbody') as HTMLTableElement
   const basketItemRows: Array<HTMLTableRowElement> = []
 
-  if (basket.size === 0)
+  if (basket.size === 0) {
+    (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true
     return
+  }
 
   for (const [id, quantity] of basket) {
     const rowHeader = document.createElement('th')

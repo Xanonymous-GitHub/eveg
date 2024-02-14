@@ -1,6 +1,11 @@
 import Cookies from 'js-cookie'
 import type { Basket } from './typing.ts'
 
+export const cookieOptions: Cookies.CookieAttributes = {
+  secure: true,
+  sameSite: 'strict',
+}
+
 export enum DialogCloseResult {
   Yes,
   No,
