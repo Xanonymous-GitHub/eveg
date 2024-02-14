@@ -41,26 +41,33 @@ function setupCookieModalEventListeners() {
 
 function setupSearchEventListeners() {
   const searchBox = document.querySelector('#searchbox') as HTMLInputElement
+  const searchButton = document.querySelector('#searchbutton') as HTMLButtonElement
+  const closeSearchButton = document.querySelector('#closesearchbutton') as HTMLButtonElement
 
   searchBox?.addEventListener('input', () => {
     searchStr = searchBox.value.trim()
-    if (searchStr === '')
+    if (searchStr === '') {
       onSearchSubmitted()
+      closeSearchButton!.disabled = false
+    }
   })
 
-  document.querySelector('#searchbutton')?.addEventListener('click', (e) => {
+  searchButton?.addEventListener('click', (e) => {
     e.preventDefault()
     searchStr = searchBox.value.trim()
     onSearchSubmitted()
+    if (searchStr.length > 0)
+      closeSearchButton!.disabled = false
   })
 
-  document.querySelector('#closesearchbutton')?.addEventListener('click', (e) => {
+  closeSearchButton?.addEventListener('click', (e) => {
     e.preventDefault()
     if (searchBox.value !== '') {
       searchBox.value = ''
       searchStr = ''
       onSearchSubmitted()
     }
+    closeSearchButton!.disabled = true
   })
 }
 

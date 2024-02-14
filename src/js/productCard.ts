@@ -7,11 +7,11 @@ const cardTemplateStr: string = `
   <div class="shop-product-details shop-product-title card__title text-center" data-field="title" data-num="{{ ID }}">
     <h2 class="text-nowrap overflow-hidden">{{ TITLE }}</h2>
   </div>
-  <div class="card__content d-flex flex-column justify-content-center" data-num="{{ ID }}">
+  <div class="card__content d-flex flex-column justify-content-center gy-5" data-num="{{ ID }}">
     <span class="shop-product-details shop-product-price m-auto" data-field="price" data-num="{{ ID }}">
       <span>{{ PRICE }}</span>
     </span>
-    <span class="shop-product-details shop-product-units m-auto" data-field="units" data-num="{{ ID }}">
+    <span class="shop-product-details shop-product-units m-auto my-2 text-muted" data-field="units" data-num="{{ ID }}">
       <span>{{ UNITS }}</span>
     </span>
     <div class="shop-product-buying m-auto" data-num="{{ ID }}">
@@ -33,7 +33,7 @@ const cardTemplateStr: string = `
 function createProductImageElement(src: string): HTMLImageElement {
   const img = document.createElement('img')
   img.src = src
-  img.className = 'img-fluid lazy'
+  img.className = 'img-fluid lazy rounded'
   img.alt = ''
   img.loading = 'lazy'
   return img

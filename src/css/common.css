@@ -22,15 +22,22 @@ button {
 }
 
 .shop-product-img img {
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
     object-fit: cover;
     vertical-align: middle;
-    border-radius: 50%;
 }
 
 .shop-product-desc {
     display: none;
+}
+
+.shop-product-price {
+    font-size: 80%;
+}
+
+.shop-product-units {
+    font-size: 60%;
 }
 
 .shop-product {
@@ -317,4 +324,15 @@ a:visited {
         margin: auto;
         width: 75%;
     }
+}
+
+/* Remove arrows from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

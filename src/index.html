@@ -4,6 +4,9 @@
   <meta charset="UTF-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <link href="/favicon.ico" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Rubik:wght@300..900&display=swap" rel="stylesheet">
   <link href="css/lib.scss" rel="stylesheet">
   <link href="css/main.scss" rel="stylesheet">
   <script src="js/products.ts" type="module" defer></script>
@@ -12,10 +15,10 @@
   <title>E-Veg Shop</title>
 </head>
 <body class="d-flex flex-column">
-<div class="sticky-top">
+<div class="sticky-top" height="100">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <img src="/favicon.ico" alt="" class="d-inline-block align-text-top" width="36" height="36">
+      <img src="/favicon.ico" alt="" class="d-inline-block align-text-top" width="36">
       <a class="navbar-brand text-black mx-2" href="/">
         E-Veg
       </a>
@@ -38,7 +41,7 @@
           <input class="form-control me-2" id="searchbox" type="search" placeholder="Search" aria-label="Search">
           <span class="d-flex flex-row">
             <button id="searchbutton" class="btn btn-success btn-sm mx-1" type="submit">Search</button>
-            <button id="closesearchbutton" class="btn btn-outline-danger btn-sm mx-1" type="submit">Cancel</button>
+            <button id="closesearchbutton" class="btn btn-outline-danger btn-sm mx-1" type="submit" disabled>Cancel</button>
           </span>
         </form>
       </div>
