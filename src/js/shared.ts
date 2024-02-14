@@ -1,6 +1,12 @@
 import Cookies from 'js-cookie'
 import type { Basket } from './typing.ts'
 
+export enum DialogCloseResult {
+  Yes,
+  No,
+  Cancel,
+}
+
 export function readBasketCookie(): Basket {
   const cookies = Cookies.get('basket')
   const entries = Object.entries<number>(JSON.parse(cookies ?? '{}'))
