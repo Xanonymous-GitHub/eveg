@@ -1,0 +1,506 @@
+[
+  {
+    "id": 0,
+    "name": "Artichokes",
+    "category": "veg",
+    "imgName": "reut-malichi-GQ62pYNohW0-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 200
+  },
+  {
+    "id": 1,
+    "name": "Asparagus",
+    "category": "veg",
+    "imgName": "markus-spiske-DPcj8-pMYSs-unsplash.webp",
+    "quantity": 125,
+    "unit": "g",
+    "unitPrice": 180
+  },
+  {
+    "id": 2,
+    "name": "Beetroot",
+    "category": "veg",
+    "imgName": "emma-jane-hobden-lFxgx7Snyfw-unsplash.webp",
+    "quantity": 1,
+    "unit": "kg",
+    "unitPrice": 90
+  },
+  {
+    "id": 3,
+    "name": "Peppers",
+    "category": "veg",
+    "imgName": "vino-li-v7H-fV9Ydkk-unsplash.webp",
+    "quantity": 3,
+    "unit": "unit",
+    "unitPrice": 140
+  },
+  {
+    "id": 4,
+    "name": "Broccoli",
+    "category": "veg",
+    "imgName": "hans-ripa-3hzBK2aPf8s-unsplash.webp",
+    "quantity": 350,
+    "unit": "g",
+    "unitPrice": 60
+  },
+  {
+    "id": 5,
+    "name": "Brussels Sprouts",
+    "category": "veg",
+    "imgName": "jez-timms-ia9z68YnJdY-unsplash.webp",
+    "quantity": 250,
+    "unit": "g",
+    "unitPrice": 150
+  },
+  {
+    "id": 6,
+    "name": "Butternut Squash",
+    "category": "veg",
+    "imgName": "andie-kolbeck-lEKiF28dxbk-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 180
+  },
+  {
+    "id": 7,
+    "name": "Cabbage",
+    "category": "veg",
+    "imgName": "mattia-barbotti-vXTt84S01F0-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 70
+  },
+  {
+    "id": 8,
+    "name": "Carrots",
+    "category": "veg",
+    "imgName": "k8-GHRT9j21m2M-unsplash.webp",
+    "quantity": 1,
+    "unit": "kg",
+    "unitPrice": 100
+  },
+  {
+    "id": 9,
+    "name": "Cauliflower",
+    "category": "veg",
+    "imgName": "karolina-kolodziejczak-y4j_bKe0b6Q-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 90
+  },
+  {
+    "id": 10,
+    "name": "Chard",
+    "category": "veg",
+    "imgName": "heather-barnes-ZGXhE1L7VL8-unsplash.webp",
+    "quantity": 150,
+    "unit": "g",
+    "unitPrice": 180
+  },
+  {
+    "id": 11,
+    "name": "Chilis",
+    "category": "veg",
+    "imgName": "alexander-schimmeck-JA3FrZ5IEK8-unsplash.webp",
+    "quantity": 50,
+    "unit": "g",
+    "unitPrice": 60
+  },
+  {
+    "id": 12,
+    "name": "Cucumber",
+    "category": "veg",
+    "imgName": "harshal-s-hirve-2GiRcLP_jkI-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 50
+  },
+  {
+    "id": 13,
+    "name": "Garlic",
+    "category": "veg",
+    "imgName": "bryam-blanco-c27y-WuwSUA-unsplash.webp",
+    "quantity": 150,
+    "unit": "g",
+    "unitPrice": 150
+  },
+  {
+    "id": 14,
+    "name": "Kale",
+    "category": "veg",
+    "imgName": "deborah-rainford-3uJcymbLnYA-unsplash.webp",
+    "quantity": 250,
+    "unit": "g",
+    "unitPrice": 125
+  },
+  {
+    "id": 15,
+    "name": "Leek",
+    "category": "veg",
+    "imgName": "heather-gill-NyI6X3oj7mg-unsplash.webp",
+    "quantity": 500,
+    "unit": "g",
+    "unitPrice": 95
+  },
+  {
+    "id": 16,
+    "name": "Lettuce",
+    "category": "veg",
+    "imgName": "mae-mu-hugb85v0J04-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 50
+  },
+  {
+    "id": 17,
+    "name": "Mushrooms",
+    "category": "veg",
+    "imgName": "harshal-s-hirve-oZ0xzQFVCWY-unsplash.webp",
+    "quantity": 300,
+    "unit": "g",
+    "unitPrice": 100
+  },
+  {
+    "id": 18,
+    "name": "Onion",
+    "category": "veg",
+    "imgName": "leonita-yuliana-sriyanto-wIc_yXhklos-unsplash.webp",
+    "quantity": 1,
+    "unit": "kg",
+    "unitPrice": 65
+  },
+  {
+    "id": 19,
+    "name": "Peas",
+    "category": "veg",
+    "imgName": "jarek-jordan-WuqQtfhdyfM-unsplash.webp",
+    "quantity": 500,
+    "unit": "g",
+    "unitPrice": 150
+  },
+  {
+    "id": 20,
+    "name": "Potatoes",
+    "category": "veg",
+    "imgName": "lars-blankers-B0s3Xndk6tw-unsplash.webp",
+    "quantity": 1,
+    "unit": "kg",
+    "unitPrice": 300
+  },
+  {
+    "id": 21,
+    "name": "Pumpkin",
+    "category": "veg",
+    "imgName": "keenan-sultanik-oxXUePN3u4Q-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 80
+  },
+  {
+    "id": 22,
+    "name": "Radish",
+    "category": "veg",
+    "imgName": "matilda-bellman-p7R7zdTXXH4-unsplash.webp",
+    "quantity": 150,
+    "unit": "g",
+    "unitPrice": 100
+  },
+  {
+    "id": 23,
+    "name": "Spinach",
+    "category": "veg",
+    "imgName": "monika-grabkowska-i14VzlCp-Eo-unsplash.webp",
+    "quantity": 200,
+    "unit": "g",
+    "unitPrice": 255
+  },
+  {
+    "id": 24,
+    "name": "Sweetcorn",
+    "category": "veg",
+    "imgName": "simona-sergi-k8knGtJAaHc-unsplash.webp",
+    "quantity": 3,
+    "unit": "unit",
+    "unitPrice": 100
+  },
+  {
+    "id": 25,
+    "name": "Tomatoes",
+    "category": "veg",
+    "imgName": "alice-butenko-c1P1mXEHrik-unsplash.webp",
+    "quantity": 500,
+    "unit": "g",
+    "unitPrice": 350
+  },
+  {
+    "id": 26,
+    "name": "Apples",
+    "category": "fruit",
+    "imgName": "matheus-cenali-wXuzS9xR49M-unsplash.webp",
+    "quantity": 6,
+    "unit": "unit",
+    "unitPrice": 225
+  },
+  {
+    "id": 27,
+    "name": "Apricots",
+    "category": "fruit",
+    "imgName": "masa-zeks-P_n9OZOcGrw-unsplash.webp",
+    "quantity": 320,
+    "unit": "g",
+    "unitPrice": 190
+  },
+  {
+    "id": 28,
+    "name": "Blackberries",
+    "category": "fruit",
+    "imgName": "kateryna-moskalova-tFj5BMAwK-Q-unsplash.webp",
+    "quantity": 300,
+    "unit": "g",
+    "unitPrice": 250
+  },
+  {
+    "id": 29,
+    "name": "Blueberries",
+    "category": "fruit",
+    "imgName": "melissa-belanger-usE0kpV_yLo-unsplash.webp",
+    "quantity": 200,
+    "unit": "g",
+    "unitPrice": 160
+  },
+  {
+    "id": 30,
+    "name": "Cherries",
+    "category": "fruit",
+    "imgName": "vino-li-OseN2JZdcY4-unsplash.webp",
+    "quantity": 700,
+    "unit": "g",
+    "unitPrice": 545
+  },
+  {
+    "id": 31,
+    "name": "Grapefruit",
+    "category": "fruit",
+    "imgName": "rayia-soderberg-gUS4Ouhy1pU-unsplash.webp",
+    "quantity": 2,
+    "unit": "unit",
+    "unitPrice": 310
+  },
+  {
+    "id": 32,
+    "name": "Nectarines",
+    "category": "fruit",
+    "imgName": "dmitriy-koryas--P2YUqgo1Qs-unsplash.webp",
+    "quantity": 4,
+    "unit": "unit",
+    "unitPrice": 200
+  },
+  {
+    "id": 33,
+    "name": "Peaches",
+    "category": "fruit",
+    "imgName": "jocelyn-morales-ULg84Va3wdA-unsplash.webp",
+    "quantity": 2,
+    "unit": "unit",
+    "unitPrice": 400
+  },
+  {
+    "id": 34,
+    "name": "Pears",
+    "category": "fruit",
+    "imgName": "tijana-drndarski-RUiYB0Wjx9k-unsplash.webp",
+    "quantity": 6,
+    "unit": "unit",
+    "unitPrice": 200
+  },
+  {
+    "id": 35,
+    "name": "Plums",
+    "category": "fruit",
+    "imgName": "max-griss-Zfpa8iH5ZkU-unsplash.webp",
+    "quantity": 250,
+    "unit": "g",
+    "unitPrice": 395
+  },
+  {
+    "id": 36,
+    "name": "Pomegranates",
+    "category": "fruit",
+    "imgName": "gr-stocks-SCMnIJV3DrQ-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 130
+  },
+  {
+    "id": 37,
+    "name": "Raspberries",
+    "category": "fruit",
+    "imgName": "sina-asgari-sgwxjKLqO24-unsplash.webp",
+    "quantity": 300,
+    "unit": "g",
+    "unitPrice": 300
+  },
+  {
+    "id": 38,
+    "name": "Strawberries",
+    "category": "fruit",
+    "imgName": "maksim-shutov-IXOjM_g-XBQ-unsplash.webp",
+    "quantity": 800,
+    "unit": "g",
+    "unitPrice": 300
+  },
+  {
+    "id": 39,
+    "name": "Watermelon",
+    "category": "fruit",
+    "imgName": "juven-dunn-hUkZv0Y47Ic-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 295
+  },
+  {
+    "id": 40,
+    "name": "Salmon",
+    "category": "other",
+    "imgName": "abstral-official-dKhkCiD4zEQ-unsplash.webp",
+    "quantity": 240,
+    "unit": "g",
+    "unitPrice": 400
+  },
+  {
+    "id": 41,
+    "name": "Jelly Beans",
+    "category": "other",
+    "imgName": "amit-lahav-3t07n27XK-w-unsplash.webp",
+    "quantity": 50,
+    "unit": "g",
+    "unitPrice": 100
+  },
+  {
+    "id": 42,
+    "name": "Honey",
+    "category": "other",
+    "imgName": "art-rachen-Asj5DFw8UAw-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 480
+  },
+  {
+    "id": 43,
+    "name": "Ketchup",
+    "category": "other",
+    "imgName": "ashkan-forouzani-dYAPoTlWWZs-unsplash.webp",
+    "quantity": 240,
+    "unit": "g",
+    "unitPrice": 300
+  },
+  {
+    "id": 44,
+    "name": "Milk",
+    "category": "dairy",
+    "imgName": "elizabeth-dunne-ccV4kUrSYIM-unsplash.webp",
+    "quantity": 1,
+    "unit": "pint",
+    "unitPrice": 180
+  },
+  {
+    "id": 45,
+    "name": "Biscuits",
+    "category": "other",
+    "imgName": "ellieelien-04yMqTmUeHQ-unsplash.webp",
+    "quantity": 200,
+    "unit": "g",
+    "unitPrice": 150
+  },
+  {
+    "id": 46,
+    "name": "Burgers",
+    "category": "other",
+    "imgName": "izzy-park-OKBCiPpTHag-unsplash.webp",
+    "quantity": 4,
+    "unit": "unit",
+    "unitPrice": 450
+  },
+  {
+    "id": 47,
+    "name": "Sausages",
+    "category": "other",
+    "imgName": "jonathan-taylor-GydZBn-7LMM-unsplash.webp",
+    "quantity": 6,
+    "unit": "unit",
+    "unitPrice": 400
+  },
+  {
+    "id": 48,
+    "name": "Bread",
+    "category": "other",
+    "imgName": "laura-ockel-uugOo5Lr_iM-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 160
+  },
+  {
+    "id": 49,
+    "name": "Basil plant",
+    "category": "other",
+    "imgName": "monika-grabkowska-rICRgergpIc-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 250
+  },
+  {
+    "id": 50,
+    "name": "Crisps",
+    "category": "other",
+    "imgName": "mustafa-bashari-S4PC4SeKwKg-unsplash.webp",
+    "quantity": 6,
+    "unit": "unit",
+    "unitPrice": 275
+  },
+  {
+    "id": 51,
+    "name": "Eggs",
+    "category": "other",
+    "imgName": "nick-fewings-qlLCBkTSYAI-unsplash.webp",
+    "quantity": 6,
+    "unit": "unit",
+    "unitPrice": 110
+  },
+  {
+    "id": 52,
+    "name": "Orange Juice",
+    "category": "other",
+    "imgName": "paul-hanaoka-8WYjqXqNZs4-unsplash.webp",
+    "quantity": 1,
+    "unit": "pint",
+    "unitPrice": 180
+  },
+  {
+    "id": 53,
+    "name": "Rice",
+    "category": "other",
+    "imgName": "pierre-bamin--LdilhDx3sk-unsplash.webp",
+    "quantity": 2000,
+    "unit": "g",
+    "unitPrice": 130
+  },
+  {
+    "id": 54,
+    "name": "Chocolate Bar",
+    "category": "other",
+    "imgName": "tamas-pap-6IDGTjq_Pic-unsplash.webp",
+    "quantity": 1,
+    "unit": "unit",
+    "unitPrice": 190
+  },
+  {
+    "id": 55,
+    "name": "Peanut Butter",
+    "category": "other",
+    "imgName": "tetiana-bykovets-Ht7ZhGt2UXg-unsplash.webp",
+    "quantity": 300,
+    "unit": "g",
+    "unitPrice": 210
+  }
+]

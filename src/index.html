@@ -6,69 +6,61 @@
   <link href="/favicon.ico" rel="icon">
   <link href="css/lib.scss" rel="stylesheet">
   <link href="css/main.scss" rel="stylesheet">
+  <script src="js/products.ts" type="module" defer></script>
+  <script src="js/shop.ts" type="module" defer></script>
+  <script src="main.ts" type="module" defer></script>
   <title>E-Veg Shop</title>
 </head>
-<body>
-<!--<div id="app"></div>-->
-<div class="hero">
-  <div class="title">E-Veg</div>
-  <div class="navbar">
-    <div class="toggle-wrapper">
-      <a class="toggle-button" href="#">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+<body class="d-flex flex-column">
+<div class="sticky-top">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <img src="/favicon.ico" alt="" class="d-inline-block align-text-top" width="36" height="36">
+      <a class="navbar-brand text-black mx-2" href="/">
+        E-Veg
       </a>
-    </div>
-    <div class="navbar-links">
-      <ul>
-        <li><a href="#"><span>Contact</span></a></li>
-        <li><a href="#" id="search-link"><span>Search</span></a></li>
-        <li><a href="#"><span>About</span></a></li>
-        <li class="spacer">&nbsp;</li>
-        <li class="welcome"><a>Welcome, Test User</a></li>
-        <li><a class="basket" href="checkout.html"><span>
-            Checkout</span></a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="search-bar">
-    <input id="searchbox" type="text"/>
-    <div class="searchbuttons">
-      <a href="#" id="searchbutton">
-          <span>
-            search
-            </span>
-      </a>
-      <a href="#" id="closesearchbutton">
-
-          <span>
-            close
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/checkout.html">Checkout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">About</a>
+          </li>
+        </ul>
+        <form class="d-flex search flex-lg-row flex-column align-items-center" role="search">
+          <input class="form-control me-2" id="searchbox" type="search" placeholder="Search" aria-label="Search">
+          <span class="d-flex flex-row">
+            <button id="searchbutton" class="btn btn-success btn-sm mx-1" type="submit">Search</button>
+            <button id="closesearchbutton" class="btn btn-outline-danger btn-sm mx-1" type="submit">Cancel</button>
           </span>
-      </a>
-
+        </form>
+      </div>
     </div>
+  </nav>
+</div>
+
+<main class="product-list-window">
+  <div class="productList stupid-grid my-2">
   </div>
-</div>
-<div class="productList">
+</main>
 
-</div>
-
-<div class="about">
-  <div>&copy; 2021 InterVeg Coventry Ltd.</div>
-  <div>Fresh produce from the Midland's green countryside.</div>
-</div>
-<div id="cookieMessage"><h1>This site uses cookies</h1>
+<footer class="about footer mt-auto">
+  <div class="position-relative w-100">&copy; 2021 InterVeg Coventry Ltd.</div>
+  <div class="position-relative m-auto">Fresh produce from the Midland's green countryside.</div>
+</footer>
+<div id="cookieMessage">
+  <h1>This site uses cookies</h1>
   <p>By using this site, you are consenting to our use of cookies</p>
   <p>We use cookies purely for the functionality of the website - to store the products that are in your basket.</p>
   <p>For further details of how we use your data, please see our privacy policy.</p>
   <p><a id="acceptCookies">Accept</a></p>
 </div>
-
-<script src="js/products.js" type="module"></script>
-<script src="js/shop.js" type="module"></script>
-<script src="main.ts" type="module"></script>
 </body>
 </html>

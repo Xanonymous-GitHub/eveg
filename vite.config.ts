@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import { defineConfig, loadEnv } from 'vite'
+import { type UserConfigFnObject, defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import type { ImportMetaEnv } from './src/vite-env'
 
@@ -41,4 +41,4 @@ export default defineConfig(({ mode }) => {
       platform: 'browser',
     },
   }
-})
+}) satisfies UserConfigFnObject

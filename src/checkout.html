@@ -6,50 +6,115 @@
   <link href="/favicon.ico" rel="icon">
   <link href="css/lib.scss" rel="stylesheet">
   <link href="css/main.scss" rel="stylesheet">
+  <script src="js/products.ts" type="module" defer></script>
+  <script src="js/checkout.ts" type="module" defer></script>
+  <script src="main.ts" type="module" defer></script>
   <title>E-Veg Shop</title>
 </head>
 <body>
 <div class="hero">
-  <div class="title">E-Veg</div>
-  <div class="navbar">
-    <div class="toggle-wrapper">
-      <a class="toggle-button" href="#">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </a>
+  <div class="title mb-2">E-Veg</div>
+</div>
+<div class="checkout-area d-flex flex-column justify-content-center position-relative m-auto px-2">
+  <h2 class="text-start px-2">Basket Contents</h2>
+  <table class="checkoutList my-2 text-start table table-striped table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <!-- FIXME: Unexpected <tbody> hidden happened. The following is just a workaround. -->
+    <div id="basket" class="table-group-divider overflow-y-auto h-100">
+      <tr><td colspan="4" class="text-center">Nothing here 🥹!</td></tr>
     </div>
-
+    <tfoot id="basket-footer">
+      <tr>
+        <td colspan="3">Total</td>
+        <td id="basket-total-price">£0.00</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr class="my-3">
+  <div class="position-relative w-100 px-2" id="customerDetails">
+    <h2>Payment Details</h2>
+    <div class="col-md-7 col-lg-8 w-100">
+      <h4 class="mb-3">Billing address</h4>
+      <form class="needs-validation" novalidate="">
+        <div class="row g-3 justify-content-center align-content-stretch">
+          <div class="col-sm-6">
+            <label class="form-label" for="firstName">First name</label>
+            <input class="form-control" id="firstName" placeholder="" required="" type="text" value="">
+            <div class="invalid-feedback">
+              Valid first name is required.
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label class="form-label" for="lastName">Last name</label>
+            <input class="form-control" id="lastName" placeholder="" required="" type="text" value="">
+            <div class="invalid-feedback">
+              Valid last name is required.
+            </div>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="email">Email <span class="text-muted">(Optional)</span></label>
+            <input class="form-control" id="email" placeholder="you@example.com" type="email">
+            <div class="invalid-feedback">
+              Please enter a valid email address for shipping updates.
+            </div>
+          </div>
+          <div class="col-12">
+            <label class="form-label" for="address">Address</label>
+            <input class="form-control" id="address" placeholder="1234 Main St" required="" type="text">
+            <div class="invalid-feedback">
+              Please enter your shipping address.
+            </div>
+          </div>
+          <hr class="my-3">
+          <h4 class="mb-1">Payment</h4>
+          <div class="row gy-3 px-0">
+            <div class="col-md-6">
+              <label class="form-label" for="cc-name">Name on card</label>
+              <input class="form-control" id="cc-name" placeholder="" required="" type="text">
+              <small class="text-muted">Full name as displayed on card</small>
+              <div class="invalid-feedback">
+                Name on card is required
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="cc-number">Credit card number</label>
+              <input class="form-control" id="cc-number" placeholder="" required="" type="text">
+              <div class="invalid-feedback">
+                Credit card number is required
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="cc-expiration">Expiration</label>
+              <input class="form-control" id="cc-expiration" placeholder="" required="" type="text">
+              <div class="invalid-feedback">
+                Expiration date required
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label" for="cc-cvv">CVV</label>
+              <input class="form-control" id="cc-cvv" placeholder="" required="" type="password">
+              <div class="invalid-feedback">
+                Security code required
+              </div>
+            </div>
+          </div>
+          <hr class="my-4">
+          <button id="paycreditcard" class="m-auto btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-<h2>Basket Contents</h2>
-<table class="checkoutList">
-
-</table>
-<div id="customerDetails">
-  <h2>Customer Details</h2>
-
-  <form action="creditcard.html" class="customerDetails">
-    <label for="customerName">Name:</label><input disabled="true" name="customerName" type="text" value="Test User">
-    <label for="emailAddress">Email:</label><input disabled="true" name="emailAddress" type="text"
-                                                   value="testuser@example.org">
-    <label for="contactNumber">Contact number:</label><input disabled="true" name="contactNumber" type="text"
-                                                             value="1234">
-    <label for="delAddress">Delivery Address:</label><input disabled="true" name="delAddress"
-                                                            type="text"
-                                                            value="12 Example Avenue, Example Town, EX4 7AL">
-    <button>Pay by Credit Card</button>
-  </form>
-
-</div>
-
-<div class="about">
+<footer class="about">
   <div>&copy; 2021 InterVeg Coventry Ltd.</div>
   <div>Fresh produce from the Midland's green countryside.</div>
-</div>
-
-<script src="js/products.js" type="module"></script>
-<script src="js/checkout.js" type="module"></script>
-<script src="main.ts" type="module"></script>
+</footer>
 </body>
 </html>
