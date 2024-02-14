@@ -45,7 +45,7 @@ function createProductImageElement(src: string): HTMLImageElement {
 export function createProductCard(
   product: Product,
   onAddToBasketRequested: (productId: number, requestedQuantity: number) => void,
-  onSetProductQuantity: (productId: number, requestedQuantity: number) => void
+  onSetProductQuantity: (productId: number, requestedQuantity: number) => void,
 ): HTMLDivElement {
   const cardHTMLStr = cardTemplateStr
     .replaceAll('{{ ID }}', product.id.toString())
@@ -59,67 +59,62 @@ export function createProductCard(
 
   const inputBox = thisProductCard.querySelector('.buyInput') as HTMLInputElement
 
-  inputBox?.addEventListener('change',
-  () => {
-    if (inputBox.value === "0" || inputBox.value === ""){
-      const addToBasketBtn = thisProductCard.querySelector('.addToBasket');
-      const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv');
-      addToBasketBtn!.classList.remove('d-none');
-      adjustDiv!.classList.add('d-none');
+  inputBox?.addEventListener('change', () => {
+    if (inputBox.value === '0' || inputBox.value === '') {
+      const addToBasketBtn = thisProductCard.querySelector('.addToBasket')
+      const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv')
+      addToBasketBtn!.classList.remove('d-none')
+      adjustDiv!.classList.add('d-none')
     }
-    else{
+    else {
       onSetProductQuantity(product.id, Number.parseInt(inputBox.value))
     }
   })
 
-  inputBox?.addEventListener('keyup',
-  (e) => {
-    if (e.key === 'Enter' || e.keyCode === 13){
-      if (inputBox.value === "0" || inputBox.value ===""){
-        const addToBasketBtn = thisProductCard.querySelector('.addToBasket');
-        const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv');
-        addToBasketBtn!.classList.remove('d-none');
-        adjustDiv!.classList.add('d-none');
+  inputBox?.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+      if (inputBox.value === '0' || inputBox.value === '') {
+        const addToBasketBtn = thisProductCard.querySelector('.addToBasket')
+        const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv')
+        addToBasketBtn!.classList.remove('d-none')
+        adjustDiv!.classList.add('d-none')
       }
-      else{
+      else {
         onSetProductQuantity(product.id, Number.parseInt(inputBox.value))
       }
     }
   })
-  
-  thisProductCard.querySelector('.adjustUp')?.addEventListener('click',
-   () => {
+
+  thisProductCard.querySelector('.adjustUp')?.addEventListener('click', () => {
     onAddToBasketRequested(product.id, 1)
     inputBox.value = (Number.parseInt(inputBox.value) + 1).toString()
   })
-
-  
 
   thisProductCard.querySelector('.adjustDown')?.addEventListener('click', () => {
     onAddToBasketRequested(product.id, -1)
     const newValue = Number.parseInt(inputBox.value) - 1
     inputBox.value = newValue <= 0 ? '1' : newValue.toString()
-    if (newValue === 0){
-      const addToBasketBtn = thisProductCard.querySelector('.addToBasket');
-      const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv');
-      addToBasketBtn!.classList.remove('d-none');
-      adjustDiv!.classList.add('d-none');
+    if (newValue === 0) {
+      const addToBasketBtn = thisProductCard.querySelector('.addToBasket')
+      const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv')
+      addToBasketBtn!.classList.remove('d-none')
+      adjustDiv!.classList.add('d-none')
     }
   })
 
   thisProductCard.querySelector('.addToBasket')?.addEventListener(
     'click',
-    function(e) { 
+    (e) => {
       onAddToBasketRequested(product.id, 1)
-      const addToBasketBtn = e.target as HTMLDivElement;
-      const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv');
+      const addToBasketBtn = e.target as HTMLDivElement
+      const adjustDiv = addToBasketBtn!.closest('.shop-product')!.querySelector('.adjustDiv')
       // window.alert(adjustDiv.classList);
       // window.alert(addToBasketBtn.classList)
-      addToBasketBtn.classList.add('d-none');
-      adjustDiv!.classList.remove('d-none');
+      addToBasketBtn.classList.add('d-none')
+      adjustDiv!.classList.remove('d-none')
       const newValue = Number.parseInt(inputBox.value)
       inputBox.value = newValue <= 0 ? '1' : newValue.toString()
-    
+
       Swal.fire({
         timerProgressBar: true,
         icon: 'success',
