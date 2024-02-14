@@ -1,7 +1,7 @@
-import Swal from 'sweetalert2'
+import swal from 'sweetalert'
 import { products } from './products.ts'
 import type { Basket } from './typing'
-import { readBasketCookie } from './shared'
+import { DialogCloseResult, readBasketCookie } from './shared'
 
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
@@ -17,8 +17,12 @@ function init() {
 }
 
 function resetListeners() {
-  // document.querySelector('#paycreditcard')?.addEventListener('click', showCreditCardPage)
-  document.querySelector('#paycreditcard')?.addEventListener('click', showSweetAlert)
+  document.querySelector('#paycreditcard')?.addEventListener('click', (e) => {
+    showSweetAlert(e, (result) => {
+      if (result === DialogCloseResult.Yes)
+        showCreditCardPage(e)
+    }).then()
+  })
 }
 
 function showCreditCardPage(e: Event) {
@@ -33,19 +37,28 @@ function showCreditCardPage(e: Event) {
   }
 }
 
-function showSweetAlert(e: Event) {
+async function showSweetAlert(e: Event, onDialogClose?: (result: DialogCloseResult) => void) {
   e.preventDefault()
 
-  Swal.fire({
+  const result = await swal({
     title: 'Are you sure to checkout?',
     icon: 'warning',
-    confirmButtonText: 'Yes',
-    confirmButtonColor: '#d33',
-    showCancelButton: true,
-  }).then((result) => {
-    if (result.isConfirmed)
-      showCreditCardPage(e)
+    buttons: {
+      cancel: {
+        visible: true,
+        text: 'Cancel',
+        value: DialogCloseResult.Cancel,
+      },
+      yes: {
+        visible: true,
+        text: 'Yes',
+        className: 'bg-danger',
+        value: DialogCloseResult.Yes,
+      },
+    },
   })
+
+  onDialogClose && onDialogClose(result)
 }
 
 function calculateTotalPrice() {
