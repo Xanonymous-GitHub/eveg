@@ -149,7 +149,8 @@ async function asyncMakeProductCardElements() {
 
   const creationTasks = await Promise.allSettled(
     products.map(async (product) => {
-      const productCard = createProductCard(product, onAddToBasketClicked, onSetProductQuantity)
+      const basketQuantity = basket.get(product.id) ?? 0
+      const productCard = createProductCard(product, basketQuantity, onAddToBasketClicked, onSetProductQuantity)
       observer.observe(productCard)
       return productCard
     }),
