@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2'
+import swal from 'sweetalert'
 import type { Product } from './typing.ts'
 
 const cardTemplateStr: string = `
@@ -95,7 +95,9 @@ export function createProductCard(
 
   thisProductCard.querySelector('.addToBasket')?.addEventListener(
     'click',
-    async (e) => {
+    (e) => {
+      e.preventDefault()
+
       onAddToBasketRequested(product.id, 1)
       const addToBasketBtn = e.target as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
@@ -104,13 +106,11 @@ export function createProductCard(
       const newValue = Number.parseInt(inputBox.value)
       inputBox.value = newValue <= 0 ? '1' : newValue.toString()
 
-      await Swal.fire({
-        timerProgressBar: true,
+      swal({
         icon: 'success',
         title: `${product.name} was added to basket.`,
-        showConfirmButton: false,
-        timer: 2000, // Close after 1500ms (1.5 seconds)
-      })
+        timer: 2000,
+      }).then()
     },
   )
 
