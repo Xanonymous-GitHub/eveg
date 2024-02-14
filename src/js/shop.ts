@@ -73,8 +73,20 @@ function onAddToBasketClicked(productId: number, requestedQuantity: number) {
   else
     basket.set(productId, newQuantity)
 
+  console.log(basket);
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
 }
+
+function onSetProductQuantity(productId: number, requestedQuantity: number) {
+  if (requestedQuantity === 0)
+    basket.delete(productId)
+  else
+    basket.set(productId, requestedQuantity)
+
+  console.log(basket);
+  Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+}
+
 
 function onSearchSubmitted() {
   const productContainer = document.querySelectorAll('.productList > .shop-product.card')
@@ -124,7 +136,7 @@ async function asyncMakeProductCardElements() {
 
   const creationTasks = await Promise.allSettled(
     products.map(async (product) => {
-      const productCard = createProductCard(product, onAddToBasketClicked)
+      const productCard = createProductCard(product, onAddToBasketClicked, onSetProductQuantity)
       observer.observe(productCard)
       return productCard
     }),
