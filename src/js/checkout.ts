@@ -34,6 +34,27 @@ function resetListeners() {
       }
     }).then()
   })
+  document.querySelector('#paycreditcard')?.addEventListener('click', onCheckoutButtonClicked)
+}
+
+function onCheckoutButtonClicked(e: Event) {
+  if (!isCheckoutFormValidated()) {
+    e.preventDefault()
+    e.stopPropagation()
+    return
+  }
+  showSweetAlert(e, (result) => {
+    if (result === DialogCloseResult.Yes)
+      showCreditCardPage(e)
+  }).then()
+}
+
+function isCheckoutFormValidated(): boolean {
+  const form = document.querySelector('.needs-validation') as HTMLFormElement
+  const isValidated = form.checkValidity()
+  if (!isValidated)
+    form.classList.add('was-validated')
+  return isValidated
 }
 
 function showCreditCardPage(e: Event) {
