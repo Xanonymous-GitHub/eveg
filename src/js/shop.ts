@@ -73,7 +73,6 @@ function onAddToBasketClicked(productId: number, requestedQuantity: number) {
   else
     basket.set(productId, newQuantity)
 
-  console.log(basket);
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
 }
 
@@ -83,10 +82,8 @@ function onSetProductQuantity(productId: number, requestedQuantity: number) {
   else
     basket.set(productId, requestedQuantity)
 
-  console.log(basket);
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
 }
-
 
 function onSearchSubmitted() {
   const productContainer = document.querySelectorAll('.productList > .shop-product.card')
@@ -146,7 +143,6 @@ async function asyncMakeProductCardElements() {
     if (result.status === 'fulfilled')
       return result.value
 
-    console.error(result.reason)
     return document.createElement('div')
   }))
 }
