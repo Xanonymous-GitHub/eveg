@@ -41,7 +41,7 @@ async function showSweetAlert(e: Event, onDialogClose?: (result: DialogCloseResu
   e.preventDefault()
 
   const result = await swal({
-    title: 'Are you sure to checkout?',
+    title: 'Are you sure you want to pay?',
     icon: 'warning',
     buttons: {
       cancel: {
@@ -71,7 +71,11 @@ function calculateTotalPrice() {
 function updateTotalPrice() {
   const totalPrice = calculateTotalPrice()
   const totalPriceElement = document.querySelector('#basket-total-price') as HTMLTableCellElement
-  totalPriceElement.textContent = `£ ${(totalPrice / 100).toFixed(2)}`
+  const payByCreditCardButton = document.querySelector('#paycreditcard') as HTMLButtonElement
+
+  const totalPricePretty = `£${(totalPrice / 100).toFixed(2)}`
+  totalPriceElement.textContent = totalPricePretty
+  payByCreditCardButton.textContent = `Pay ${totalPricePretty}`
 }
 
 function updateCheckoutList() {
