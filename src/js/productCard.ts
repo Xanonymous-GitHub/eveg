@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import type { Product } from './typing.ts'
 
 const cardTemplateStr: string = `
@@ -67,7 +68,18 @@ export function createProductCard(
 
   thisProductCard.querySelector('.addToBasket')?.addEventListener(
     'click',
-    () => onAddToBasketRequested(product.id, Number.parseInt(inputBox.value)),
+    () => {
+      // Display SweetAlert2 message with auto-close
+      Swal.fire({
+        timerProgressBar: true,
+        icon: 'success',
+        title: `${product.name} was added to basket.`,
+        showConfirmButton: false,
+        timer: 2000, // Close after 1500ms (1.5 seconds)
+      })
+
+      onAddToBasketRequested(product.id, Number.parseInt(inputBox.value))
+    },
   )
 
   const img = createProductImageElement(`/images/${product.imgName}`)

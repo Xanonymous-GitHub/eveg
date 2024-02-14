@@ -299,3 +299,22 @@ a:visited {
         margin-bottom: .25rem;
     }
 }
+
+.about-area {
+    @media (max-width: 576px) {
+        font-size: .7rem;
+        width: 95%;
+    }
+
+    @media (min-width: 576px) and (max-width: 768px) {
+        font-size: .8rem;
+        width: 95%;
+    }
+
+    @media (min-width: 768px) {
+        font-size: .9rem;
+        max-width: 800px;
+        margin: auto;
+        width: 75%;
+    }
+}
