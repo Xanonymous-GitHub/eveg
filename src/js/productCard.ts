@@ -95,7 +95,7 @@ export function createProductCard(
 
   
 
-  thisProductCard.querySelector('.adjustDown')?.addEventListener('click', (e) => {
+  thisProductCard.querySelector('.adjustDown')?.addEventListener('click', () => {
     onAddToBasketRequested(product.id, -1)
     const newValue = Number.parseInt(inputBox.value) - 1
     inputBox.value = newValue <= 0 ? '1' : newValue.toString()
