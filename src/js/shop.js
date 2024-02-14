@@ -10,16 +10,25 @@ const basket = {}
 // To change the quantity of a product, change the value of the input (with the class of buyInput), you can then recalculate the basket with refreshBasket()
 // Or you can adjust the basket object via javascript and call updateQuantityInputs() and refreshBasket()
 const cardTemplate = `<div class="shop-product" data-num="[EVEGPRODUCT#]">
-<div class="shop-product-details shop-product-title card__title" data-field="title" data-num="[EVEGPRODUCT#]"></div>
-<div class="card__content" data-num="[EVEGPRODUCT#]">
 <div class="shop-product-details shop-product-img" data-field="img" data-num="[EVEGPRODUCT#]"></div>
+<div class="shop-product-details shop-product-title card__title" data-field="title" data-num="[EVEGPRODUCT#]"></div>
+<div class="card__content" data-num="[EVEGPRODUCT#]">  
+<div class="shop-product-details shop-product-weight" data-field="weight" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-details shop-product-price" data-field="price" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-details shop-product-units" data-field="units" data-num="[EVEGPRODUCT#]"></div>
 <div class="shop-product-buying" data-num="[EVEGPRODUCT#]">
-<div class="productBasketDiv"><button class="addToBasket btn btn-warning">Add to Basket</button>
-<div class="adjustDiv"><button class="btn adjustDown">-</button>
-<input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
-<button class="btn adjustUp">+</button></div></div></div></div></div>`
+    <div class="productBasketDiv">
+      <div id = "buttonBasket" class="adjustDiv2">
+        <button class="addToBasket btn btn-warning">Add to Basket</button>
+      </div>
+      <div id = "trio" class="adjustDiv hidden">
+        <button class="btn adjustDown">-</button>
+        <input class="buyInput" data-num="[EVEGPRODUCT#]" min="0" value="0" type="number">
+        <button class="btn adjustUp">+</button>
+      </div>
+    </div>
+  </div>
+</div>`
 
 function init() {
   const toggleButton = document.getElementsByClassName('toggle-button')[0]
@@ -174,11 +183,14 @@ function redraw() {
       case 'img':
         element.innerHTML = `<span class="imgspacer"></span><img src="images/${productDetails[num].image}" alt=''>`
         break
+      case 'weight':
+        element.innerHTML = `<div> ${productDetails[num].weight} </div>`
+        break
       case 'price':
-        element.innerHTML = `<span>£${(productDetails[num].price / 100).toFixed(2)}</span>`
+        element.innerHTML = `<span class="with-padding">£${(productDetails[num].price / 100).toFixed(2)}</span>`
         break
       case 'units':
-        element.innerHTML = `<span>${productDetails[num].packsize} ${productDetails[num].units}</span>`
+        element.innerHTML = `<span class="fontreductionandcolor">${productDetails[num].packsize}/${productDetails[num].units}</span>`
         break
     }
   })
@@ -186,9 +198,60 @@ function redraw() {
   updateQuantityInputs()
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  init()
-})
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+
+  // Add event listener to toggle visibility
+  document.querySelectorAll('.addToBasket').forEach((addToBasketBtn) => {
+    addToBasketBtn.addEventListener('click', function () {
+      
+      const addToBasketBtn = this;
+      const adjustDiv = addToBasketBtn.closest('.shop-product').querySelector('.adjustDiv');
+      // window.alert(adjustDiv.classList);
+      // window.alert(addToBasketBtn.classList)
+      addToBasketBtn.classList.add('hidden');
+      adjustDiv.classList.remove('hidden');
+      // window.alert(adjustDiv.classList);
+      // window.alert(addToBasketBtn.classList);
+    });
+  });
+
+  document.querySelectorAll('.buyInput').forEach((buyInput) => {
+    buyInput.addEventListener('change', function (event) {
+      const currentValue = event.target.value;
+      const addInput = this;
+      const button = addInput.closest('.shop-product').querySelector('.addToBasket');
+      const trio = addInput.closest('.shop-product').querySelector('.adjustDiv');
+      if (Number(currentValue) === 0) {
+        // window.alert(button.classList)
+        // window.alert(trio.classList)
+        trio.classList.add('hidden');
+        button.classList.remove('hidden');
+        // window.alert(button.classList)
+        // window.alert(trio.classList)
+      }
+      //  else {
+      //   addInput.classList.add('hidden');
+      //   adjustDiv.classList.remove('hidden');
+      // }
+
+      const thisID = this.getAttribute('data-num');
+      changeQuantity(thisID, currentValue);
+    });
+  });
+
+  document.querySelectorAll('.btn').forEach((adjustBtn) => {
+    adjustBtn.addEventListener('click', function () {
+      const button = this.closest('.shop-product').querySelector('.addToBasket');
+      const adjustDiv = this.closest('.shop-product').querySelector('.adjustDiv');
+      window.alert(Number(button.querySelector('.buyInput').value));
+      if (Number(button.querySelector('.buyInput').value) === 0) {
+        button.classList.remove('hidden');
+        adjustDiv.classList.add('hidden');
+      }
+    });
+  });
+});
 
 function updateQuantityInputs() {
   for (const buyInput of document.querySelectorAll('.buyInput')) {

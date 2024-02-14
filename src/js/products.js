@@ -3,6 +3,7 @@ const imagesArr = [['Artichokes', 'veg', 'reut-malichi-GQ62pYNohW0-unsplash.jpg'
 
 export const productDetails = []
 
+
 export function initProducts(callback) {
   for (let i = 0; i < imagesArr.length; i++) {
     const thisProduct = {
@@ -12,6 +13,7 @@ export function initProducts(callback) {
       packsize: imagesArr[i][3],
       units: imagesArr[i][4],
       price: imagesArr[i][5],
+      weight: "500g",
       productID: i,
     }
     productDetails.push(thisProduct)
@@ -19,6 +21,7 @@ export function initProducts(callback) {
   if (callback !== undefined)
     callback()
 }
+
 
 export function setCookie(cname, cvalue) {
   const d = new Date()
