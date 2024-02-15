@@ -9,9 +9,3 @@ export interface Product {
 }
 
 export type Basket = Map<number, number>
-
-export enum SORT_METHOD {
-  ALPHABETICAL,
-  PRICE_ASC,
-  PRICE_DESC,
-}

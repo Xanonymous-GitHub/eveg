@@ -1,5 +1,6 @@
 import swal from 'sweetalert'
 import type { Product } from './typing.ts'
+import { MAX_PRODUCT_QUANTITY } from './shared.ts'
 
 const cardTemplateStr: string = `
 <div class="shop-product card p-2 w-100" data-num="{{ ID }}">
@@ -44,7 +45,7 @@ export function createProductCard(
   product: Product,
   basketQuantity: number,
   onAddToBasketRequested: (productId: number, requestedQuantity: number) => number,
-  onSetProductQuantity: (productId: number, requestedQuantity: number) => void,
+  onSetProductQuantity: (productId: number, requestedQuantity: number) => number,
 ): HTMLDivElement {
   const cardHTMLStr = cardTemplateStr
     .replaceAll('{{ ID }}', product.id.toString())
@@ -57,31 +58,28 @@ export function createProductCard(
   const thisProductCard = thisProductCardTemplate.firstElementChild as HTMLDivElement
 
   const inputBox = thisProductCard.querySelector('.buyInput') as HTMLInputElement
-  // set initial quantity value
-  inputBox.value = basketQuantity.toString()
-  if (basketQuantity > 0) {
-    // set up if user has this product in basket already
-    const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
-    const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
-    addToBasketBtn.classList.add('d-none')
-    adjustDiv.classList.remove('d-none')
-  }
+
+  // Listeners
 
   const onInputBoxChanged = () => {
-    if ((Number.parseInt(inputBox.value) || 0) <= 0) {
-      const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
-      const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
+    const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
+    const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
+
+    if (inputBox.valueAsNumber <= 0) {
       addToBasketBtn.classList.remove('d-none')
       adjustDiv.classList.add('d-none')
       onSetProductQuantity(product.id, 0)
     }
     else {
-      onSetProductQuantity(product.id, Number.parseInt(inputBox.value))
+      const newQuantity = onSetProductQuantity(product.id, inputBox.valueAsNumber)
+      addToBasketBtn.classList.add('d-none')
+      adjustDiv.classList.remove('d-none')
+      inputBox.value = newQuantity.toString();
+      (thisProductCard.querySelector('.adjustUp') as HTMLButtonElement).disabled = !(newQuantity < MAX_PRODUCT_QUANTITY)
     }
   }
 
   inputBox?.addEventListener('change', onInputBoxChanged)
-
   inputBox?.addEventListener('keyup', (e) => {
     if (e.key === 'Enter')
       onInputBoxChanged()
@@ -90,6 +88,8 @@ export function createProductCard(
   thisProductCard.querySelector('.adjustUp')?.addEventListener('click', () => {
     const newQuantity = onAddToBasketRequested(product.id, 1)
     inputBox.value = newQuantity.toString()
+    if (newQuantity === MAX_PRODUCT_QUANTITY)
+      (thisProductCard.querySelector('.adjustUp') as HTMLButtonElement).disabled = true
   })
 
   thisProductCard.querySelector('.adjustDown')?.addEventListener('click', () => {
@@ -101,6 +101,7 @@ export function createProductCard(
       addToBasketBtn.classList.remove('d-none')
       adjustDiv.classList.add('d-none')
     }
+    (thisProductCard.querySelector('.adjustUp') as HTMLButtonElement).disabled = false
   })
 
   thisProductCard.querySelector('.addToBasket')?.addEventListener(
@@ -124,6 +125,11 @@ export function createProductCard(
     },
   )
 
+  // Set initial quantity value and dispatch change event to trigger listener
+  inputBox.value = basketQuantity.toString()
+  inputBox.dispatchEvent(new Event('change'))
+
+  // Add product image
   const img = createProductImageElement(`/images/${product.imgName}`)
   setTimeout((thisProductCard) => {
     thisProductCard.querySelector('.shop-product-img')?.appendChild(img)

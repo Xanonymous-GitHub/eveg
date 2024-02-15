@@ -21,3 +21,11 @@ export function readBasketCookie(): Basket {
 
   return basket
 }
+
+export enum SORT_METHOD {
+  ALPHABETICAL,
+  PRICE_ASC,
+  PRICE_DESC,
+}
+
+export const MAX_PRODUCT_QUANTITY = 100

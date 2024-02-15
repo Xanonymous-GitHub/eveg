@@ -2,7 +2,7 @@ import swal from 'sweetalert'
 import Cookies from 'js-cookie'
 import { products } from './products.ts'
 import type { Basket } from './typing'
-import { DialogCloseResult, cookieOptions, readBasketCookie } from './shared'
+import { DialogCloseResult, MAX_PRODUCT_QUANTITY, cookieOptions, readBasketCookie } from './shared'
 import { isExpirationDateValid, isSecurityCodeValid, isValid } from './creditCard.ts'
 
 const basket: Basket = readBasketCookie()
@@ -199,7 +199,9 @@ function updateCheckoutList() {
     adjustUp.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'adjustUp', 'ms-2')
     adjustUp.textContent = '+'
     adjustUp.addEventListener('click', () => {
-      basket.set(id, Math.min(basket.get(id)! + 1, 100))
+      const newQuantity = Math.min(basket.get(id)! + 1, MAX_PRODUCT_QUANTITY)
+      adjustUp.disabled = newQuantity === MAX_PRODUCT_QUANTITY
+      basket.set(id, newQuantity)
       Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
       updateCheckoutList()
       updateTotalPrice()
