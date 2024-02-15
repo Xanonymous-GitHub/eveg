@@ -7,11 +7,11 @@ const cardTemplateStr: string = `
   <div class="shop-product-details shop-product-title card__title text-center" data-field="title" data-num="{{ ID }}">
     <h2 class="text-nowrap overflow-hidden">{{ TITLE }}</h2>
   </div>
-  <div class="card__content d-flex flex-column justify-content-center" data-num="{{ ID }}">
+  <div class="card__content d-flex flex-column justify-content-center gy-5" data-num="{{ ID }}">
     <span class="shop-product-details shop-product-price m-auto" data-field="price" data-num="{{ ID }}">
       <span>{{ PRICE }}</span>
     </span>
-    <span class="shop-product-details shop-product-units m-auto" data-field="units" data-num="{{ ID }}">
+    <span class="shop-product-details shop-product-units m-auto my-2 text-muted" data-field="units" data-num="{{ ID }}">
       <span>{{ UNITS }}</span>
     </span>
     <div class="shop-product-buying m-auto" data-num="{{ ID }}">
@@ -33,7 +33,7 @@ const cardTemplateStr: string = `
 function createProductImageElement(src: string): HTMLImageElement {
   const img = document.createElement('img')
   img.src = src
-  img.className = 'img-fluid lazy'
+  img.className = 'img-fluid lazy rounded'
   img.alt = ''
   img.loading = 'lazy'
   return img
@@ -42,6 +42,7 @@ function createProductImageElement(src: string): HTMLImageElement {
 // TODO: Migrate to TSX or WebComponents.
 export function createProductCard(
   product: Product,
+  basketQuantity: number,
   onAddToBasketRequested: (productId: number, requestedQuantity: number) => void,
   onSetProductQuantity: (productId: number, requestedQuantity: number) => void,
 ): HTMLDivElement {
@@ -56,10 +57,19 @@ export function createProductCard(
   const thisProductCard = thisProductCardTemplate.firstElementChild as HTMLDivElement
 
   const inputBox = thisProductCard.querySelector('.buyInput') as HTMLInputElement
+  // set initial quantity value
+  inputBox.value = basketQuantity.toString()
+  if (basketQuantity > 0) {
+    // set up if user has this product in basket already
+    const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
+    const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
+    addToBasketBtn.classList.add('d-none')
+    adjustDiv.classList.remove('d-none')
+  }
 
   const onInputBoxChanged = () => {
     if (inputBox.value === '0' || inputBox.value === '') {
-      const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLDivElement
+      const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.remove('d-none')
       adjustDiv.classList.add('d-none')
@@ -86,7 +96,7 @@ export function createProductCard(
     const newValue = Number.parseInt(inputBox.value) - 1
     inputBox.value = newValue <= 0 ? '1' : newValue.toString()
     if (newValue === 0) {
-      const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLDivElement
+      const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.remove('d-none')
       adjustDiv.classList.add('d-none')

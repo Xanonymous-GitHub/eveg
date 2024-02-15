@@ -19,29 +19,7 @@ button {
     background-color: var(--colour-2);
     color: var(--colour-1);
     font-size: 100%;
-}
-
-.shop-product-img img {
-    width: 8rem;
-    height: 8rem;
-    object-fit: cover;
-    vertical-align: middle;
-    border-radius: 50%;
-}
-
-.shop-product-desc {
-    display: none;
-}
-
-.shop-product {
-    font-size: 200%;
-    opacity: 1;
-    transition: opacity 0.25s ease-in-out;
-}
-
-.shop-product.hide {
-    opacity: 0;
-    transition: opacity 0.25s ease-in-out;
+    font-weight: 600 !important;
 }
 
 .searchbuttons span {
@@ -66,11 +44,6 @@ html {
     --colour-6: hsl(var(--colour-6-h), var(--colour-6-s), var(--colour-6-l));
     --colour-7: hsl(var(--colour-7-h), var(--colour-7-s), var(--colour-7-l));
 
-}
-
-
-.shop-product {
-    float: left;
 }
 
 .menu {
@@ -130,6 +103,14 @@ li a, .subnavbar-links li a {
     text-align: center;
     padding: 0 1rem 0.5rem 1rem;
     display: block;
+}
+
+.navbarNav li a {
+    font-weight: 600 !important;
+}
+
+.nav-link {
+    font-weight: 600 !important;
 }
 
 .toggle-wrapper {
@@ -317,4 +298,15 @@ a:visited {
         margin: auto;
         width: 75%;
     }
+}
+
+/* Remove arrows from number input */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

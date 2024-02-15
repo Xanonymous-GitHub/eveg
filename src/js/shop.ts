@@ -3,15 +3,11 @@ import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
 import { createProductCard } from './productCard.ts'
 import type { Basket } from './typing'
-import { readBasketCookie } from './shared'
+import { cookieOptions, readBasketCookie } from './shared'
 
 let searchStr = ''
 const basket: Basket = readBasketCookie()
 const allProductElements: Array<HTMLDivElement> = []
-const cookieOptions: Cookies.CookieAttributes = {
-  secure: true,
-  sameSite: 'strict',
-}
 
 addEventListener('DOMContentLoaded', () => init())
 
@@ -26,7 +22,7 @@ function init() {
 }
 
 function setupCookieModalEventListeners() {
-  const cookieMsgModal = document.querySelector('#cookieMessage') as HTMLDivElement | null
+  const cookieMsgModal = document.querySelector('#cookieMessage') as HTMLDivElement
   document.querySelector('#acceptCookies')?.addEventListener('click', () => {
     Cookies.set('cookieMessageSeen', 'true', {
       secure: true,
@@ -41,26 +37,35 @@ function setupCookieModalEventListeners() {
 
 function setupSearchEventListeners() {
   const searchBox = document.querySelector('#searchbox') as HTMLInputElement
+  const noResultsDiv = document.querySelector('#noSearchResults') as HTMLDivElement
+  const searchButton = document.querySelector('#searchbutton') as HTMLButtonElement
+  const closeSearchButton = document.querySelector('#closesearchbutton') as HTMLButtonElement
 
   searchBox?.addEventListener('input', () => {
     searchStr = searchBox.value.trim()
-    if (searchStr === '')
+    if (searchStr === '') {
       onSearchSubmitted()
+      closeSearchButton.disabled = false
+    }
   })
 
-  document.querySelector('#searchbutton')?.addEventListener('click', (e) => {
+  searchButton?.addEventListener('click', (e) => {
     e.preventDefault()
     searchStr = searchBox.value.trim()
     onSearchSubmitted()
+    if (searchStr.length > 0)
+      closeSearchButton.disabled = false
   })
 
-  document.querySelector('#closesearchbutton')?.addEventListener('click', (e) => {
+  closeSearchButton?.addEventListener('click', (e) => {
     e.preventDefault()
     if (searchBox.value !== '') {
       searchBox.value = ''
       searchStr = ''
       onSearchSubmitted()
     }
+    closeSearchButton.disabled = true
+    noResultsDiv.classList.add('d-none')
   })
 }
 
@@ -87,9 +92,11 @@ function onSetProductQuantity(productId: number, requestedQuantity: number) {
 
 function onSearchSubmitted() {
   const productContainer = document.querySelectorAll('.productList > .shop-product.card')
+  const noResultsDiv = document.querySelector('#noSearchResults') as HTMLDivElement
+  let itemFound = false
   // toggle visibility of product cards in the productContainer based on search string
   productContainer.forEach((element) => {
-    const productTitle = element.querySelector('.shop-product-title') as HTMLDivElement | null
+    const productTitle = element.querySelector('.shop-product-title') as HTMLDivElement
     if (productTitle === null)
       return
 
@@ -99,16 +106,25 @@ function onSearchSubmitted() {
 
     const titleLower = title.toLowerCase()
     const searchStrLower = searchStr.toLowerCase().trim()
-    element.classList.toggle('d-none', !(searchStrLower === '') && !titleLower.includes(searchStrLower))
+    if (titleLower.includes(searchStrLower)) {
+      element.classList.remove('d-none')
+      itemFound = true
+    }
+    else { element.classList.add('d-none') }
   })
+
+  if (!itemFound)
+    noResultsDiv.classList.remove('d-none')
+  else
+    noResultsDiv.classList.add('d-none')
 }
 
 function updateDisplayedProductCards() {
-  const mainElement = document.querySelector('main') as HTMLElement | null
-  const productContainer = document.querySelector('.productList') as HTMLDivElement | null
+  const mainElement = document.querySelector('main') as HTMLElement
+  const productContainer = document.querySelector('.productList') as HTMLDivElement
 
   const lazyLoader = new LazyLoad({
-    container: mainElement!,
+    container: mainElement,
   })
 
   productContainer?.replaceChildren(...allProductElements)
@@ -117,7 +133,7 @@ function updateDisplayedProductCards() {
 }
 
 async function asyncMakeProductCardElements() {
-  const mainElement = document.querySelector('main') as HTMLElement | null
+  const mainElement = document.querySelector('main') as HTMLElement
 
   const observerOptions = {
     root: mainElement,
@@ -133,7 +149,8 @@ async function asyncMakeProductCardElements() {
 
   const creationTasks = await Promise.allSettled(
     products.map(async (product) => {
-      const productCard = createProductCard(product, onAddToBasketClicked, onSetProductQuantity)
+      const basketQuantity = basket.get(product.id) ?? 0
+      const productCard = createProductCard(product, basketQuantity, onAddToBasketClicked, onSetProductQuantity)
       observer.observe(productCard)
       return productCard
     }),

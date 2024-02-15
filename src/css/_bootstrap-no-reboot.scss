@@ -1,6 +1,9 @@
 @import "bootstrap/scss/bootstrap-utilities";
 @import "bootstrap/scss/bootstrap-grid";
 
+// Icons
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
 // Components
 // This can be optimized by importing only the components that are used.
 @import "bootstrap/scss/images";
