@@ -37,8 +37,10 @@ function onCheckoutButtonClicked(e: Event, form: HTMLFormElement) {
   e.preventDefault()
   e.stopPropagation()
 
-  if (!isCheckoutFormValidated(form))
+  if (!isCheckoutFormValidated(form)) {
+    form.classList.add('was-validated') // TODO: Does this do anything
     return
+  }
 
   showSweetAlert('Are you sure?', e, (result) => {
     if (result === DialogCloseResult.Yes)
@@ -47,10 +49,7 @@ function onCheckoutButtonClicked(e: Event, form: HTMLFormElement) {
 }
 
 function isCheckoutFormValidated(form: HTMLFormElement): boolean {
-  const isValidated = form.checkValidity()
-  if (!isValidated)
-    form.classList.add('was-validated')
-  return isValidated
+  return form.checkValidity()
 }
 
 function initiateCreditCardFormDataBinding(parentForm: HTMLFormElement) {
@@ -143,7 +142,7 @@ function updateTotalPrice() {
 
   const totalPricePretty = `£${(totalPrice / 100).toFixed(2)}`
   totalPriceElement.textContent = totalPricePretty
-  payByCreditCardButton.textContent = `Pay ${totalPricePretty}`
+  payByCreditCardButton.textContent = `Pay ${totalPrice > 0 ? totalPricePretty : ''}`
 }
 
 function updateCheckoutList() {
@@ -151,7 +150,8 @@ function updateCheckoutList() {
   const basketItemRows: Array<HTMLTableRowElement> = []
 
   if (basket.size === 0) {
-    (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true
+    (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true;
+    (document.querySelector('#paycreditcard') as HTMLButtonElement).disabled = true
     return
   }
 
