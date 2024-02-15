@@ -310,3 +310,9 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.btn.adjustDown:disabled, .btn.adjustUp:disabled {
+    background-color: #d3d3d3;
+    border-color: #d3d3d3;
+    color: #808080;
+}
