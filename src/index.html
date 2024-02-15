@@ -16,6 +16,14 @@
   <title>E-Veg Shop</title>
 </head>
 <body class="d-flex flex-column">
+<div class="d-flex flex-row align-items-center justify-content-center py-2">
+  <h4 class="me-1">Sort by: </h4>
+  <select class="form-select" id="sortMethod">
+    <option value="0" selected>Alphabetical</option>
+    <option value="1">Price (ascending)</option>
+    <option value="2">Price (descending)</option>
+  </select>
+</div>
 <main class="product-list-window">
   <div class="productList stupid-grid my-2"></div>
   <div id="noSearchResults" class="d-none text-center w-100 my-5 px-5"><h3>No results 🥹</h3></div>

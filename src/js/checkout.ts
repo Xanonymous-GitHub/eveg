@@ -8,6 +8,8 @@ import { isExpirationDateValid, isSecurityCodeValid, isValid } from './creditCar
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
 
+const EMPTY_BASKET_HTML = `<div id="basket" class="table-group-divider overflow-y-auto h-100"><tr><td colspan="5" class="text-center">Nothing here 🥹!</td></tr></div>`
+
 addEventListener('DOMContentLoaded', init)
 
 function init() {
@@ -24,7 +26,8 @@ function resetListeners() {
       if (result === DialogCloseResult.Yes) {
         basket.clear()
         Cookies.remove('basket', cookieOptions)
-        window.location.reload()
+        updateCheckoutList()
+        updateTotalPrice()
       }
     }).then()
   })
@@ -37,8 +40,10 @@ function onCheckoutButtonClicked(e: Event, form: HTMLFormElement) {
   e.preventDefault()
   e.stopPropagation()
 
-  if (!isCheckoutFormValidated(form))
+  if (!isCheckoutFormValidated(form)) {
+    form.classList.add('was-validated') // TODO: Does this do anything
     return
+  }
 
   showSweetAlert('Are you sure?', e, (result) => {
     if (result === DialogCloseResult.Yes)
@@ -47,10 +52,7 @@ function onCheckoutButtonClicked(e: Event, form: HTMLFormElement) {
 }
 
 function isCheckoutFormValidated(form: HTMLFormElement): boolean {
-  const isValidated = form.checkValidity()
-  if (!isValidated)
-    form.classList.add('was-validated')
-  return isValidated
+  return form.checkValidity()
 }
 
 function initiateCreditCardFormDataBinding(parentForm: HTMLFormElement) {
@@ -143,7 +145,7 @@ function updateTotalPrice() {
 
   const totalPricePretty = `£${(totalPrice / 100).toFixed(2)}`
   totalPriceElement.textContent = totalPricePretty
-  payByCreditCardButton.textContent = `Pay ${totalPricePretty}`
+  payByCreditCardButton.textContent = `Pay ${totalPrice > 0 ? totalPricePretty : ''}`
 }
 
 function updateCheckoutList() {
@@ -151,27 +153,81 @@ function updateCheckoutList() {
   const basketItemRows: Array<HTMLTableRowElement> = []
 
   if (basket.size === 0) {
-    (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true
+    (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true;
+    (document.querySelector('#paycreditcard') as HTMLButtonElement).disabled = true
+    const checkoutListBody = document.querySelector('.checkoutList tbody')
+    checkoutListBody?.replaceChildren();
+    checkoutListBody?.insertAdjacentHTML('afterbegin', EMPTY_BASKET_HTML)
     return
   }
 
   for (const [id, quantity] of basket) {
     const rowHeader = document.createElement('th')
     const nameCol = document.createElement('td')
+    const adjustDown = document.createElement('button')
     const quantityCol = document.createElement('td')
+    const adjustUp = document.createElement('button')
     const priceCol = document.createElement('td')
     const totalCol = document.createElement('td')
+    const removeCol = document.createElement('td')
+    const removeButton = document.createElement('button')
     const row = document.createElement('tr')
 
     const unitPrice = (products[id].unitPrice / 100)
 
     rowHeader.scope = 'row'
     nameCol.textContent = products[id].name
-    quantityCol.textContent = quantity.toString()
+
+    adjustDown.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'me-2', 'adjustDown')
+    adjustDown.textContent = '-'
+    adjustDown.addEventListener('click', (e) => {
+      const newQuantity = quantity - 1
+      if (newQuantity <= 0) {
+        showSweetAlert('Are you sure you want to remove this item?', e, (result) => {
+          if (result === DialogCloseResult.Yes) {
+            basket.delete(id)
+            Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+            updateCheckoutList()
+            updateTotalPrice()
+          }
+        }).then()
+      }
+      else { basket.set(id, newQuantity) }
+
+      Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+      updateCheckoutList()
+      updateTotalPrice()
+    })
+    adjustUp.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'adjustUp', 'ms-2')
+    adjustUp.textContent = '+'
+    adjustUp.addEventListener('click', () => {
+      basket.set(id, basket.get(id)! + 1)
+      Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+      updateCheckoutList()
+      updateTotalPrice()
+    })
+    quantityCol.replaceChildren(adjustDown, `${quantity.toString()}`, adjustUp)
+
     priceCol.textContent = `£ ${unitPrice.toFixed(2)}`
     totalCol.textContent = `£ ${(unitPrice * quantity).toFixed(2)}`
 
-    row.replaceChildren(nameCol, quantityCol, priceCol, totalCol)
+    removeButton.classList.add('btn', 'btn-outline-danger', 'text-nowrap', 'm-0', 'p-1')
+    removeButton.innerHTML = `<i class='bi bi-trash'></i>`
+    removeCol.style.whiteSpace = 'nowrap'
+
+    removeButton.addEventListener('click', (e) => {
+      showSweetAlert('Are you sure you want to remove this item?', e, (result) => {
+        if (result === DialogCloseResult.Yes) {
+          basket.delete(id)
+          Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+          updateCheckoutList()
+          updateTotalPrice()
+        }
+      }).then()
+    })
+
+    removeCol.appendChild(removeButton)
+    row.replaceChildren(nameCol, quantityCol, priceCol, totalCol, removeCol)
     basketItemRows.push(row)
   }
 

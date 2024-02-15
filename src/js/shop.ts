@@ -2,18 +2,19 @@ import Cookies from 'js-cookie'
 import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
 import { createProductCard } from './productCard.ts'
-import type { Basket } from './typing'
+import { type Basket, SORT_METHOD } from './typing'
 import { cookieOptions, readBasketCookie } from './shared'
 
 let searchStr = ''
 const basket: Basket = readBasketCookie()
-const allProductElements: Array<HTMLDivElement> = []
+let allProductElements: Array<HTMLDivElement> = []
 
 addEventListener('DOMContentLoaded', () => init())
 
 function init() {
   setupSearchEventListeners()
   setupCookieModalEventListeners()
+  setupSortingEventListeners()
 
   setTimeout(async () => {
     await asyncMakeProductCardElements()
@@ -66,6 +67,15 @@ function setupSearchEventListeners() {
     }
     closeSearchButton.disabled = true
     noResultsDiv.classList.add('d-none')
+  })
+}
+
+function setupSortingEventListeners() {
+  const sortMethodSelect = document.querySelector('#sortMethod') as HTMLSelectElement
+
+  sortMethodSelect?.addEventListener('change', () => {
+    sortAndUpdateProductCards(Number.parseInt(sortMethodSelect.value) as SORT_METHOD)
+    // TODO: Store sort method in a cookie
   })
 }
 
@@ -162,4 +172,20 @@ async function asyncMakeProductCardElements() {
 
     return document.createElement('div')
   }))
+}
+
+async function sortAndUpdateProductCards(sortMethod: SORT_METHOD) {
+  if (sortMethod === SORT_METHOD.PRICE_ASC)
+    products.sort((a, b) => a.unitPrice - b.unitPrice)
+
+  else if (sortMethod === SORT_METHOD.PRICE_DESC)
+    products.sort((a, b) => b.unitPrice - a.unitPrice)
+
+  else
+    products.sort((a, b) => a.name.localeCompare(b.name))
+
+  allProductElements = []
+  await asyncMakeProductCardElements()
+  updateDisplayedProductCards()
+  onSearchSubmitted()
 }

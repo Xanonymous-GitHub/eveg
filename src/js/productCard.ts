@@ -16,7 +16,7 @@ const cardTemplateStr: string = `
     </span>
     <div class="shop-product-buying m-auto" data-num="{{ ID }}">
       <div class="productBasketDiv m-auto">
-        <button class="addToBasket m-auto d-block btn btn-warning">Add to Basket</button>
+        <button class="addToBasket m-auto d-block btn btn-warning">Add to basket</button>
         <div class="adjustDiv my-2 d-none">
           <span class="m-auto d-flex justify-content-center input-group">
             <button class="btn adjustDown">-</button>
@@ -50,7 +50,7 @@ export function createProductCard(
     .replaceAll('{{ ID }}', product.id.toString())
     .replace('{{ TITLE }}', product.name)
     .replace('{{ PRICE }}', `£${(product.unitPrice / 100).toFixed(2)}`)
-    .replace('{{ UNITS }}', `${product.quantity} ${product.unit}`)
+    .replace('{{ UNITS }}', `${product.quantity} ${product.unit === 'unit' ? (product.quantity === 1 ? 'unit' : 'units') : product.unit}`)
 
   const thisProductCardTemplate = document.createElement('template')
   thisProductCardTemplate.insertAdjacentHTML('beforeend', cardHTMLStr)
@@ -68,11 +68,12 @@ export function createProductCard(
   }
 
   const onInputBoxChanged = () => {
-    if (inputBox.value === '0' || inputBox.value === '') {
+    if ((Number.parseInt(inputBox.value) || 0) <= 0) {
       const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.remove('d-none')
       adjustDiv.classList.add('d-none')
+      onSetProductQuantity(product.id, 0)
     }
     else {
       onSetProductQuantity(product.id, Number.parseInt(inputBox.value))
@@ -118,7 +119,7 @@ export function createProductCard(
 
       swal({
         icon: 'success',
-        title: `${product.name} was added to basket.`,
+        title: `${product.name} ${product.name.endsWith('s') ? 'were' : 'was'} added to basket.`,
         timer: 2000,
       }).then()
     },
