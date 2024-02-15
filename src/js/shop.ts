@@ -2,8 +2,8 @@ import Cookies from 'js-cookie'
 import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
 import { createProductCard } from './productCard.ts'
-import { type Basket, SORT_METHOD } from './typing'
-import { cookieOptions, readBasketCookie } from './shared'
+import type { Basket } from './typing'
+import { MAX_PRODUCT_QUANTITY, SORT_METHOD, cookieOptions, readBasketCookie } from './shared'
 
 let searchStr = ''
 const basket: Basket = readBasketCookie()
@@ -81,7 +81,7 @@ function setupSortingEventListeners() {
 
 function onAddToBasketClicked(productId: number, requestedQuantity: number) {
   const currentQuantity = basket.get(productId) ?? 0
-  const newQuantity = currentQuantity + requestedQuantity
+  const newQuantity = Math.min(currentQuantity + requestedQuantity, MAX_PRODUCT_QUANTITY) // max quantity 100 per product
 
   if (newQuantity === 0)
     basket.delete(productId)
@@ -89,15 +89,18 @@ function onAddToBasketClicked(productId: number, requestedQuantity: number) {
     basket.set(productId, newQuantity)
 
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+  return newQuantity
 }
 
 function onSetProductQuantity(productId: number, requestedQuantity: number) {
+  const newQuantity = Math.min(requestedQuantity, MAX_PRODUCT_QUANTITY)
   if (requestedQuantity === 0)
     basket.delete(productId)
   else
-    basket.set(productId, requestedQuantity)
+    basket.set(productId, newQuantity)
 
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+  return newQuantity
 }
 
 function onSearchSubmitted() {
