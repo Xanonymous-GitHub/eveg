@@ -187,4 +187,5 @@ async function sortAndUpdateProductCards(sortMethod: SORT_METHOD) {
   allProductElements = []
   await asyncMakeProductCardElements()
   updateDisplayedProductCards()
+  onSearchSubmitted()
 }
