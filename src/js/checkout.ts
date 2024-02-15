@@ -5,7 +5,6 @@ import type { Basket } from './typing'
 import { DialogCloseResult, cookieOptions, readBasketCookie } from './shared'
 import { isExpirationDateValid, isSecurityCodeValid, isValid } from './creditCard.ts'
 
-const creditCardShown = false
 const basket: Basket = readBasketCookie()
 
 const EMPTY_BASKET_HTML = `<div id="basket" class="table-group-divider overflow-y-auto h-100"><tr><td colspan="5" class="text-center">Nothing here 🥹!</td></tr></div>`
@@ -98,13 +97,12 @@ function initiateCreditCardFormDataBinding(parentForm: HTMLFormElement) {
 function showCreditCardPage(e: Event) {
   e.preventDefault()
 
-  if (!creditCardShown) {
-    const payIFrame = document.createElement('iframe')
-    payIFrame.src = 'creditcard.html'
-    payIFrame.width = '100%'
-    payIFrame.height = '500px'
-    document.querySelector('#customerDetails')?.replaceChildren(payIFrame)
-  }
+  const payIFrame = document.createElement('iframe')
+  payIFrame.src = 'creditcard.html'
+  payIFrame.width = '100%'
+  payIFrame.height = '500px'
+  document.querySelector('#customerDetails')?.replaceChildren(payIFrame);
+  (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true
 }
 
 async function showSweetAlert(message: string, e: Event, onDialogClose?: (result: DialogCloseResult) => void) {
@@ -156,7 +154,7 @@ function updateCheckoutList() {
     (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true;
     (document.querySelector('#paycreditcard') as HTMLButtonElement).disabled = true
     const checkoutListBody = document.querySelector('.checkoutList tbody')
-    checkoutListBody?.replaceChildren();
+    checkoutListBody?.replaceChildren()
     checkoutListBody?.insertAdjacentHTML('afterbegin', EMPTY_BASKET_HTML)
     return
   }
