@@ -68,7 +68,7 @@ export function createProductCard(
   }
 
   const onInputBoxChanged = () => {
-    if (inputBox.value === '0' || inputBox.value === '') {
+    if ((Number.parseInt(inputBox.value) || 0) <= 0) {
       const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.remove('d-none')
