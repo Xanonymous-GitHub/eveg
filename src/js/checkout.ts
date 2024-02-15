@@ -8,6 +8,8 @@ import { isExpirationDateValid, isSecurityCodeValid, isValid } from './creditCar
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
 
+const EMPTY_BASKET_HTML = `<div id="basket" class="table-group-divider overflow-y-auto h-100"><tr><td colspan="5" class="text-center">Nothing here 🥹!</td></tr></div>`
+
 addEventListener('DOMContentLoaded', init)
 
 function init() {
@@ -24,7 +26,8 @@ function resetListeners() {
       if (result === DialogCloseResult.Yes) {
         basket.clear()
         Cookies.remove('basket', cookieOptions)
-        window.location.reload()
+        updateCheckoutList()
+        updateTotalPrice()
       }
     }).then()
   })
@@ -152,26 +155,66 @@ function updateCheckoutList() {
   if (basket.size === 0) {
     (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true;
     (document.querySelector('#paycreditcard') as HTMLButtonElement).disabled = true
+    document.querySelector('.checkoutList tbody')!.innerHTML = EMPTY_BASKET_HTML
     return
   }
 
   for (const [id, quantity] of basket) {
     const rowHeader = document.createElement('th')
     const nameCol = document.createElement('td')
+    const adjustDown = document.createElement('button')
     const quantityCol = document.createElement('td')
+    const adjustUp = document.createElement('button')
     const priceCol = document.createElement('td')
     const totalCol = document.createElement('td')
+    const removeCol = document.createElement('td')
+    const removeButton = document.createElement('button')
     const row = document.createElement('tr')
 
     const unitPrice = (products[id].unitPrice / 100)
 
     rowHeader.scope = 'row'
     nameCol.textContent = products[id].name
-    quantityCol.textContent = quantity.toString()
+
+    adjustDown.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'me-2', 'adjustDown')
+    adjustDown.textContent = '-'
+    adjustDown.addEventListener('click', () => {
+      const newQuantity = quantity - 1
+      if (newQuantity <= 0)
+        basket.delete(id)
+      else
+        basket.set(id, newQuantity)
+
+      Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+      updateCheckoutList()
+      updateTotalPrice()
+    })
+    adjustUp.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'adjustUp', 'ms-2')
+    adjustUp.textContent = '+'
+    adjustUp.addEventListener('click', () => {
+      basket.set(id, basket.get(id)! + 1)
+      Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+      updateCheckoutList()
+      updateTotalPrice()
+    })
+    quantityCol.replaceChildren(adjustDown, `${quantity.toString()}`, adjustUp)
+
     priceCol.textContent = `£ ${unitPrice.toFixed(2)}`
     totalCol.textContent = `£ ${(unitPrice * quantity).toFixed(2)}`
 
-    row.replaceChildren(nameCol, quantityCol, priceCol, totalCol)
+    removeButton.classList.add('btn', 'btn-outline-danger', 'text-nowrap', 'm-0', 'p-1')
+    removeButton.innerHTML = `<i class='bi bi-trash'></i>`
+    removeCol.style.whiteSpace = 'nowrap'
+
+    removeButton.addEventListener('click', () => {
+      basket.delete(id)
+      Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+      updateCheckoutList()
+      updateTotalPrice()
+    })
+
+    removeCol.appendChild(removeButton)
+    row.replaceChildren(nameCol, quantityCol, priceCol, totalCol, removeCol)
     basketItemRows.push(row)
   }
 

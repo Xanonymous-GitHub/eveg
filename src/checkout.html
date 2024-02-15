@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="checkout-area d-flex flex-column justify-content-center position-relative m-auto px-2 mt-3">
-  <div class="d-flex flex-column justify-content-start ml-0 mb-3">
+  <div class="d-flex flex-column justify-content-start ms-0 mb-3">
     <a href="/" class="text-decoration-none">
       <button class="btn btn-warning"><i class='bi bi-arrow-left'></i> Continue shopping</button>
     </a>
@@ -30,15 +30,16 @@
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
         <th scope="col">Total</th>
+        <th scope="col" style="width: 1px">Remove</th>
       </tr>
     </thead>
     <!-- FIXME: Unexpected <tbody> hidden happened. The following is just a workaround. -->
     <div id="basket" class="table-group-divider overflow-y-auto h-100">
-      <tr><td colspan="4" class="text-center">Nothing here 🥹!</td></tr>
+      <tr><td colspan="5" class="text-center">Nothing here 🥹!</td></tr>
     </div>
     <tfoot id="basket-footer">
       <tr>
-        <td colspan="3">Total</td>
+        <td colspan="4">Total</td>
         <td id="basket-total-price">£0.00</td>
       </tr>
     </tfoot>
