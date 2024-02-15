@@ -20,7 +20,7 @@ const cardTemplateStr: string = `
         <div class="adjustDiv my-2 d-none">
           <span class="m-auto d-flex justify-content-center input-group">
             <button class="btn adjustDown">-</button>
-            <input class="buyInput form-control" data-num="{{ ID }}" min="0" type="number" value="1" />
+            <input class="buyInput form-control" data-num="{{ ID }}" min="0" max="100" type="number" value="1" />
             <button class="btn adjustUp">+</button>
           </span>
         </div>
@@ -43,7 +43,7 @@ function createProductImageElement(src: string): HTMLImageElement {
 export function createProductCard(
   product: Product,
   basketQuantity: number,
-  onAddToBasketRequested: (productId: number, requestedQuantity: number) => void,
+  onAddToBasketRequested: (productId: number, requestedQuantity: number) => number,
   onSetProductQuantity: (productId: number, requestedQuantity: number) => void,
 ): HTMLDivElement {
   const cardHTMLStr = cardTemplateStr
@@ -88,15 +88,14 @@ export function createProductCard(
   })
 
   thisProductCard.querySelector('.adjustUp')?.addEventListener('click', () => {
-    onAddToBasketRequested(product.id, 1)
-    inputBox.value = (Number.parseInt(inputBox.value) + 1).toString()
+    const newQuantity = onAddToBasketRequested(product.id, 1)
+    inputBox.value = newQuantity.toString()
   })
 
   thisProductCard.querySelector('.adjustDown')?.addEventListener('click', () => {
-    onAddToBasketRequested(product.id, -1)
-    const newValue = Number.parseInt(inputBox.value) - 1
-    inputBox.value = newValue <= 0 ? '1' : newValue.toString()
-    if (newValue === 0) {
+    const newQuantity = onAddToBasketRequested(product.id, -1)
+    inputBox.value = newQuantity.toString()
+    if (newQuantity === 0) {
       const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.remove('d-none')
@@ -109,13 +108,13 @@ export function createProductCard(
     (e) => {
       e.preventDefault()
 
-      onAddToBasketRequested(product.id, 1)
+      const newQuantity = onAddToBasketRequested(product.id, 1)
       const addToBasketBtn = e.target as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.add('d-none')
       adjustDiv.classList.remove('d-none')
-      const newValue = Number.parseInt(inputBox.value)
-      inputBox.value = newValue <= 0 ? '1' : newValue.toString()
+
+      inputBox.value = newQuantity.toString()
 
       swal({
         icon: 'success',

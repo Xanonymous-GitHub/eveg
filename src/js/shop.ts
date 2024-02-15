@@ -81,7 +81,7 @@ function setupSortingEventListeners() {
 
 function onAddToBasketClicked(productId: number, requestedQuantity: number) {
   const currentQuantity = basket.get(productId) ?? 0
-  const newQuantity = currentQuantity + requestedQuantity
+  const newQuantity = Math.min(currentQuantity + requestedQuantity, 100) // max quantity 100 per product
 
   if (newQuantity === 0)
     basket.delete(productId)
@@ -89,6 +89,7 @@ function onAddToBasketClicked(productId: number, requestedQuantity: number) {
     basket.set(productId, newQuantity)
 
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+  return newQuantity
 }
 
 function onSetProductQuantity(productId: number, requestedQuantity: number) {

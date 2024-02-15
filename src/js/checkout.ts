@@ -199,7 +199,7 @@ function updateCheckoutList() {
     adjustUp.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'adjustUp', 'ms-2')
     adjustUp.textContent = '+'
     adjustUp.addEventListener('click', () => {
-      basket.set(id, basket.get(id)! + 1)
+      basket.set(id, Math.min(basket.get(id)! + 1, 100))
       Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
       updateCheckoutList()
       updateTotalPrice()
