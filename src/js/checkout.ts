@@ -155,7 +155,9 @@ function updateCheckoutList() {
   if (basket.size === 0) {
     (document.querySelector('#clearbasket') as HTMLButtonElement).disabled = true;
     (document.querySelector('#paycreditcard') as HTMLButtonElement).disabled = true
-    document.querySelector('.checkoutList tbody')!.innerHTML = EMPTY_BASKET_HTML
+    const checkoutListBody = document.querySelector('.checkoutList tbody')
+    checkoutListBody?.replaceChildren();
+    checkoutListBody?.insertAdjacentHTML('afterbegin', EMPTY_BASKET_HTML)
     return
   }
 
