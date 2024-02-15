@@ -96,7 +96,7 @@ function onSetProductQuantity(productId: number, requestedQuantity: number) {
   if (requestedQuantity === 0)
     basket.delete(productId)
   else
-    basket.set(productId, requestedQuantity)
+    basket.set(productId, Math.min(requestedQuantity, MAX_PRODUCT_QUANTITY))
 
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
   return requestedQuantity
