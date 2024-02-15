@@ -20,9 +20,9 @@ const cardTemplateStr: string = `
         <button class="addToBasket m-auto d-block btn btn-warning">Add to basket</button>
         <div class="adjustDiv my-2 d-none">
           <span class="m-auto d-flex justify-content-center input-group">
-            <button class="btn adjustDown">-</button>
+            <button class="btn adjustDown btn-warning">-</button>
             <input class="buyInput form-control" data-num="{{ ID }}" min="0" max="100" type="number" value="1" />
-            <button class="btn adjustUp">+</button>
+            <button class="btn adjustUp btn-warning">+</button>
           </span>
         </div>
       </div>
