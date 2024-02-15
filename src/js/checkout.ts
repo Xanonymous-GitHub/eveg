@@ -190,7 +190,10 @@ function updateCheckoutList() {
           }
         }).then()
       }
-      else { basket.set(id, newQuantity); adjustUp.disabled = false }
+      else {
+        basket.set(id, newQuantity)
+        adjustUp.disabled = false
+      }
 
       Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
       updateCheckoutList()
