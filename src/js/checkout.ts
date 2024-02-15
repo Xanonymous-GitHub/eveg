@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import { products } from './products.ts'
 import type { Basket } from './typing'
 import { DialogCloseResult, cookieOptions, readBasketCookie } from './shared'
+import { isExpirationDateValid, isSecurityCodeValid, isValid } from './creditCard.ts'
 
 const creditCardShown = false
 const basket: Basket = readBasketCookie()
@@ -34,27 +35,69 @@ function resetListeners() {
       }
     }).then()
   })
-  document.querySelector('#paycreditcard')?.addEventListener('click', onCheckoutButtonClicked)
+  const form = document.querySelector('.needs-validation') as HTMLFormElement
+  document.querySelector('#paycreditcard')?.addEventListener('click', e => onCheckoutButtonClicked(e, form))
+  initiateCreditCardFormDataBinding(form)
 }
 
-function onCheckoutButtonClicked(e: Event) {
-  if (!isCheckoutFormValidated()) {
-    e.preventDefault()
-    e.stopPropagation()
+function onCheckoutButtonClicked(e: Event, form: HTMLFormElement) {
+  e.preventDefault()
+  e.stopPropagation()
+
+  if (!isCheckoutFormValidated(form))
     return
-  }
+
   showSweetAlert(e, (result) => {
     if (result === DialogCloseResult.Yes)
       showCreditCardPage(e)
   }).then()
 }
 
-function isCheckoutFormValidated(): boolean {
-  const form = document.querySelector('.needs-validation') as HTMLFormElement
+function isCheckoutFormValidated(form: HTMLFormElement): boolean {
   const isValidated = form.checkValidity()
   if (!isValidated)
     form.classList.add('was-validated')
   return isValidated
+}
+
+function initiateCreditCardFormDataBinding(parentForm: HTMLFormElement) {
+  const cardNumberInput = parentForm['cc-number'] as HTMLInputElement
+  const cardNumberInputInvalidFeedback = cardNumberInput.nextElementSibling as HTMLDivElement
+
+  const cardExpirationInput = parentForm['cc-expiration'] as HTMLInputElement
+  const cardExpirationInputInvalidFeedback = cardExpirationInput.nextElementSibling as HTMLDivElement
+
+  const cardCVCInput = parentForm['cc-cvv'] as HTMLInputElement
+  const cardCVCInputInvalidFeedback = cardCVCInput.nextElementSibling as HTMLDivElement
+
+  const allInputBoxEvents = ['change', 'keyup', 'unfocus']
+  allInputBoxEvents.forEach((event) => {
+    cardNumberInput.addEventListener(event, () => {
+      cardNumberInput.setCustomValidity(
+        isValid(cardNumberInput.value) ? '' : 'Invalid card number',
+      )
+      cardNumberInputInvalidFeedback.textContent = cardNumberInput.value.trim() === ''
+        ? 'Credit card number is required'
+        : cardNumberInput.validationMessage
+    })
+    cardExpirationInput.addEventListener(event, () => {
+      const [year, month] = cardExpirationInput.value.split('-')
+      cardExpirationInput.setCustomValidity(
+        isExpirationDateValid(month, year) ? '' : 'Invalid expiration date',
+      )
+      cardExpirationInputInvalidFeedback.textContent = cardExpirationInput.value.trim() === ''
+        ? 'Expiration date is required'
+        : cardExpirationInput.validationMessage
+    })
+    cardCVCInput.addEventListener(event, () => {
+      cardCVCInput.setCustomValidity(
+        isSecurityCodeValid(cardNumberInput.value, cardCVCInput.value) ? '' : 'Invalid security code',
+      )
+      cardCVCInputInvalidFeedback.textContent = cardCVCInput.value.trim() === ''
+        ? 'Security code is required'
+        : cardCVCInput.validationMessage
+    })
+  })
 }
 
 function showCreditCardPage(e: Event) {
