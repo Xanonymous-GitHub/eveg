@@ -188,25 +188,6 @@ li a, .subnavbar-links li a {
     vertical-align: middle;
 }
 
-#cookieMessage {
-    position: fixed;
-    display: none;
-    right: 0px;
-    bottom: 0px;
-    background-color: hsl(var(--colour-4-h), var(--colour-4-s), var(--colour-4-l));
-    padding: 20px;
-    /* display: none; */
-}
-
-#acceptCookies {
-    font-size: 100%;
-    margin-top: 2rem;
-}
-
-p {
-    font-size: 150%;
-}
-
 body {
     background-color: var(--colour-2);
     max-width: 100%;
