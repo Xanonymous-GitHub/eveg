@@ -178,12 +178,19 @@ function updateCheckoutList() {
 
     adjustDown.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'me-2', 'adjustDown')
     adjustDown.textContent = '-'
-    adjustDown.addEventListener('click', () => {
+    adjustDown.addEventListener('click', (e) => {
       const newQuantity = quantity - 1
-      if (newQuantity <= 0)
-        basket.delete(id)
-      else
-        basket.set(id, newQuantity)
+      if (newQuantity <= 0) {
+        showSweetAlert('Are you sure you want to remove this item?', e, (result) => {
+          if (result === DialogCloseResult.Yes) {
+            basket.delete(id)
+            Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+            updateCheckoutList()
+            updateTotalPrice()
+          }
+        }).then()
+      }
+      else { basket.set(id, newQuantity) }
 
       Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
       updateCheckoutList()
@@ -206,11 +213,15 @@ function updateCheckoutList() {
     removeButton.innerHTML = `<i class='bi bi-trash'></i>`
     removeCol.style.whiteSpace = 'nowrap'
 
-    removeButton.addEventListener('click', () => {
-      basket.delete(id)
-      Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
-      updateCheckoutList()
-      updateTotalPrice()
+    removeButton.addEventListener('click', (e) => {
+      showSweetAlert('Are you sure you want to remove this item?', e, (result) => {
+        if (result === DialogCloseResult.Yes) {
+          basket.delete(id)
+          Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
+          updateCheckoutList()
+          updateTotalPrice()
+        }
+      }).then()
     })
 
     removeCol.appendChild(removeButton)

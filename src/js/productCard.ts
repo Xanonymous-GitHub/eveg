@@ -73,6 +73,7 @@ export function createProductCard(
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
       addToBasketBtn.classList.remove('d-none')
       adjustDiv.classList.add('d-none')
+      onSetProductQuantity(product.id, 0)
     }
     else {
       onSetProductQuantity(product.id, Number.parseInt(inputBox.value))
