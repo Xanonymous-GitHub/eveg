@@ -190,17 +190,17 @@ function updateCheckoutList() {
           }
         }).then()
       }
-      else { basket.set(id, newQuantity) }
+      else { basket.set(id, newQuantity); adjustUp.disabled = false }
 
       Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
       updateCheckoutList()
       updateTotalPrice()
     })
     adjustUp.classList.add('btn', 'btn-sm', 'btn-outline-secondary', 'adjustUp', 'ms-2')
+    adjustUp.disabled = quantity === MAX_PRODUCT_QUANTITY
     adjustUp.textContent = '+'
     adjustUp.addEventListener('click', () => {
       const newQuantity = Math.min(basket.get(id)! + 1, MAX_PRODUCT_QUANTITY)
-      adjustUp.disabled = newQuantity === MAX_PRODUCT_QUANTITY
       basket.set(id, newQuantity)
       Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
       updateCheckoutList()
