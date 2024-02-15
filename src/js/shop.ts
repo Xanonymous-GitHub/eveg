@@ -13,27 +13,12 @@ addEventListener('DOMContentLoaded', () => init())
 
 function init() {
   setupSearchEventListeners()
-  setupCookieModalEventListeners()
   setupSortingEventListeners()
 
   setTimeout(async () => {
     await asyncMakeProductCardElements()
     updateDisplayedProductCards()
   })
-}
-
-function setupCookieModalEventListeners() {
-  const cookieMsgModal = document.querySelector('#cookieMessage') as HTMLDivElement
-  document.querySelector('#acceptCookies')?.addEventListener('click', () => {
-    Cookies.set('cookieMessageSeen', 'true', {
-      secure: true,
-      sameSite: 'strict',
-    })
-    cookieMsgModal?.classList.add('d-none')
-  })
-
-  if (Cookies.get('cookieMessageSeen') === 'true')
-    cookieMsgModal?.classList.add('d-none')
 }
 
 function setupSearchEventListeners() {

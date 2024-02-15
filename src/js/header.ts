@@ -1,4 +1,4 @@
-const headerHTML: string = `
+const HEADER_HTML: string = `
 <div class="sticky-top" height="100">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
@@ -42,4 +42,4 @@ function isHome(): boolean {
   return window.location.pathname.toLowerCase() === '/'
 }
 
-document.body.insertAdjacentHTML('afterbegin', headerHTML)
+document.body.insertAdjacentHTML('afterbegin', HEADER_HTML)
