@@ -19,13 +19,6 @@ function init() {
 }
 
 function resetListeners() {
-  document.querySelector('#paycreditcard')?.addEventListener('click', (e) => {
-    showSweetAlert('Are you sure?', e, (result) => {
-      if (result === DialogCloseResult.Yes)
-        showCreditCardPage(e)
-    }).then()
-  })
-
   document.querySelector('#clearbasket')?.addEventListener('click', (e) => {
     showSweetAlert('All items in the basket will be removed. Continue?', e, (result) => {
       if (result === DialogCloseResult.Yes) {
@@ -47,7 +40,7 @@ function onCheckoutButtonClicked(e: Event, form: HTMLFormElement) {
   if (!isCheckoutFormValidated(form))
     return
 
-  showSweetAlert(e, (result) => {
+  showSweetAlert('Are you sure?', e, (result) => {
     if (result === DialogCloseResult.Yes)
       showCreditCardPage(e)
   }).then()
