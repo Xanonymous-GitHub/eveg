@@ -16,7 +16,7 @@ const cardTemplateStr: string = `
     </span>
     <div class="shop-product-buying m-auto" data-num="{{ ID }}">
       <div class="productBasketDiv m-auto">
-        <button class="addToBasket m-auto d-block btn btn-warning">Add to Basket</button>
+        <button class="addToBasket m-auto d-block btn btn-warning">Add to basket</button>
         <div class="adjustDiv my-2 d-none">
           <span class="m-auto d-flex justify-content-center input-group">
             <button class="btn adjustDown">-</button>
