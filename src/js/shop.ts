@@ -93,13 +93,14 @@ function onAddToBasketClicked(productId: number, requestedQuantity: number) {
 }
 
 function onSetProductQuantity(productId: number, requestedQuantity: number) {
+  const newQuantity = Math.min(requestedQuantity, MAX_PRODUCT_QUANTITY)
   if (requestedQuantity === 0)
     basket.delete(productId)
   else
-    basket.set(productId, Math.min(requestedQuantity, MAX_PRODUCT_QUANTITY))
+    basket.set(productId, newQuantity)
 
   Cookies.set('basket', JSON.stringify(Object.fromEntries(basket)), cookieOptions)
-  return requestedQuantity
+  return newQuantity
 }
 
 function onSearchSubmitted() {
