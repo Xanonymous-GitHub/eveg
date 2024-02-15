@@ -68,3 +68,7 @@ h1 {
     max-height: 100%;
     overflow-y: auto;
 }
+
+#sortMethod {
+    width: 200px;
+}
