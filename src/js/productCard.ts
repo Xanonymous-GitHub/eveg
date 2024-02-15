@@ -118,7 +118,7 @@ export function createProductCard(
 
       swal({
         icon: 'success',
-        title: `${product.name} was added to basket.`,
+        title: `${product.name} ${product.name.endsWith('s') ? 'were' : 'was'} added to basket.`,
         timer: 2000,
       }).then()
     },
