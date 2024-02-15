@@ -50,7 +50,7 @@ export function createProductCard(
     .replaceAll('{{ ID }}', product.id.toString())
     .replace('{{ TITLE }}', product.name)
     .replace('{{ PRICE }}', `£${(product.unitPrice / 100).toFixed(2)}`)
-    .replace('{{ UNITS }}', `${product.quantity} ${product.unit}`)
+    .replace('{{ UNITS }}', `${product.quantity} ${product.unit === 'unit' ? (product.quantity === 1 ? 'unit' : 'units') : product.unit}`)
 
   const thisProductCardTemplate = document.createElement('template')
   thisProductCardTemplate.insertAdjacentHTML('beforeend', cardHTMLStr)
