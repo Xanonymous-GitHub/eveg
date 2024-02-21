@@ -5,6 +5,7 @@ html {
     min-width: 100vw;
     max-width: 100vw;
     height: 100vh;
+    width: 100vw;
 }
 
 *, *:before, *:after {
@@ -60,11 +61,6 @@ html {
     -webkit-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s ;
-
-    @media (min-width: 768px) {
-        margin-left: 2rem;
-        margin-right: 2rem;
-    }
 }
 
 .about {
