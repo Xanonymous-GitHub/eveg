@@ -136,7 +136,7 @@ export function createProductCard(
     const img = createProductImageElement(`/images/${product.imgName}`)
 
     const observerOptions = {
-      rootMargin: '-100px',
+      rootMargin: '-10px',
       threshold: 0,
     } satisfies IntersectionObserverInit
 
