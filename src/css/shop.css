@@ -24,12 +24,17 @@
 .shop-product {
     font-size: 200%;
     opacity: 1;
-    transition: opacity 0.25s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    max-width: 100%;
+    width: 100%;
 }
 
-.shop-product.hide {
+.shop-product img {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.hide {
     opacity: 0;
-    transition: opacity 0.25s ease-in-out;
 }
 
 .shop-product-title {
@@ -53,7 +58,6 @@ h1 {
 }
 
 .stupid-grid {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(min(100%,15rem),1fr));
     grid-template-rows: auto;
@@ -61,7 +65,6 @@ h1 {
     gap: 1.5rem;
     padding: 1.5rem;
     overflow-y: hidden;
-    max-width: 100%;
 }
 
 .product-list-window {
@@ -69,7 +72,9 @@ h1 {
     width: 100%;
     max-width: 100%;
     position: relative;
+    height: 100%;
     max-height: 100%;
+    min-height: 100%;
     overflow-y: auto;
 }
 

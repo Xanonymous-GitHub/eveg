@@ -61,6 +61,10 @@ html {
     -webkit-transition: all 1s;
     -o-transition: all 1s;
     transition: all 1s ;
+
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
 }
 
 .about {
