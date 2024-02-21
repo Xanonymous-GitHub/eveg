@@ -34,7 +34,7 @@ const cardTemplateStr: string = `
 function createProductImageElement(src: string): HTMLImageElement {
   const img = document.createElement('img')
   img.src = src
-  img.className = 'img-fluid lazy rounded'
+  img.className = 'img-fluid rounded hide'
   img.alt = ''
   img.loading = 'lazy'
   return img
@@ -130,8 +130,27 @@ export function createProductCard(
   inputBox.dispatchEvent(new Event('change'))
 
   // Add product image
-  const img = createProductImageElement(`/images/${product.imgName}`)
   setTimeout((thisProductCard) => {
+    const img = createProductImageElement(`/images/${product.imgName}`)
+
+    const observerOptions = {
+      rootMargin: '-100px',
+      threshold: 0,
+    } satisfies IntersectionObserverInit
+
+    const observer = new IntersectionObserver(async (entries) => {
+      const entry = entries[0]
+      if (entry.isIntersecting) {
+        await new Promise(resolve => setTimeout(resolve, 500))
+        entry.target.classList.remove('hide')
+      }
+      else {
+        entry.target.classList.add('hide')
+      }
+    }, observerOptions)
+
+    setTimeout(() => observer.observe(img), 0)
+
     thisProductCard.querySelector('.shop-product-img')?.appendChild(img)
   }, 0, thisProductCard)
 
