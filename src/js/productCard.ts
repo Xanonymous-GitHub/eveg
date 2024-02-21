@@ -143,7 +143,7 @@ export function createProductCard(
     const observer = new IntersectionObserver(async (entries) => {
       const entry = entries[0]
       if (entry.isIntersecting) {
-        await new Promise(resolve => setTimeout(resolve, 500))
+        await new Promise(resolve => setTimeout(resolve, 300))
         entry.target.classList.remove('hide')
       }
       else {
