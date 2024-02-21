@@ -20,9 +20,6 @@ dependencies:
   sweetalert:
     specifier: ^2.1.2
     version: 2.1.2
-  vanilla-lazyload:
-    specifier: ^17.8.8
-    version: 17.8.8
 
 devDependencies:
   '@antfu/eslint-config':
@@ -3171,10 +3168,6 @@ packages:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
     dev: true
-
-  /vanilla-lazyload@17.8.8:
-    resolution: {integrity: sha512-6iaLLjajGg1pBcLORks4Y8OgSTqLP/pIT3cVut/erAuoXUWYw6oqKPyjI1wF7saK6EW3TBtNLDKajKaEEzZuWw==}
-    dev: false
 
   /vite-plugin-html@3.2.2(vite@5.1.4):
     resolution: {integrity: sha512-vb9C9kcdzcIo/Oc3CLZVS03dL5pDlOFuhGlZYDCJ840BhWl/0nGeZWf3Qy7NlOayscY4Cm/QRgULCQkEZige5Q==}
