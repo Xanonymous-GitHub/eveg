@@ -108,7 +108,9 @@ function onSearchSubmitted() {
       element.classList.remove('d-none')
       itemFound = true
     }
-    else { element.classList.add('d-none') }
+    else {
+      element.classList.add('d-none')
+    }
   })
 
   if (!itemFound)
