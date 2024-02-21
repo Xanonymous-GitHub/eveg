@@ -27,6 +27,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: resolve(__dirname, './src/index.html'),
           checkout: resolve(__dirname, './src/checkout.html'),
+          about: resolve(__dirname, './src/about.html'),
           convertColors: resolve(__dirname, './src/convertColours.html'),
           creditcard: resolve(__dirname, './src/creditcard.html'),
           instructions: resolve(__dirname, './src/instructions.html'),
