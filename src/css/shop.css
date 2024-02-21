@@ -9,6 +9,16 @@
     vertical-align: middle;
 }
 
+.shop-product-img-box {
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .shop-product-desc {
     display: none;
 }

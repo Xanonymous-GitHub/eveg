@@ -4,7 +4,9 @@ import { MAX_PRODUCT_QUANTITY } from './shared.ts'
 
 const cardTemplateStr: string = `
 <div class="shop-product card p-2 w-100" data-num="{{ ID }}">
-  <div class="shop-product-details shop-product-img m-auto" data-field="img" data-num="{{ ID }}"></div>
+  <div class="shop-product-details shop-product-img m-auto" data-field="img" data-num="{{ ID }}">
+    <div class="shop-product-img-box mt-3"></div>
+  </div>
   <div class="shop-product-details shop-product-title card__title text-center" data-field="title" data-num="{{ ID }}">
     <h2 class="text-nowrap overflow-hidden">{{ TITLE }}</h2>
   </div>
@@ -151,7 +153,7 @@ export function createProductCard(
 
     setTimeout(() => observer.observe(img), 0)
 
-    thisProductCard.querySelector('.shop-product-img')?.appendChild(img)
+    thisProductCard.querySelector('.shop-product-img-box')?.appendChild(img)
   }, 0, thisProductCard)
 
   return thisProductCard
