@@ -1,5 +1,4 @@
 import Cookies from 'js-cookie'
-import LazyLoad from 'vanilla-lazyload'
 import { products } from './products.ts'
 import { createProductCard } from './productCard.ts'
 import type { Basket } from './typing'
@@ -108,7 +107,9 @@ function onSearchSubmitted() {
       element.classList.remove('d-none')
       itemFound = true
     }
-    else { element.classList.add('d-none') }
+    else {
+      element.classList.add('d-none')
+    }
   })
 
   if (!itemFound)
@@ -118,16 +119,8 @@ function onSearchSubmitted() {
 }
 
 function updateDisplayedProductCards() {
-  const mainElement = document.querySelector('main') as HTMLElement
   const productContainer = document.querySelector('.productList') as HTMLDivElement
-
-  const lazyLoader = new LazyLoad({
-    container: mainElement,
-  })
-
   productContainer?.replaceChildren(...allProductElements)
-
-  lazyLoader.update()
 }
 
 async function asyncMakeProductCardElements() {
