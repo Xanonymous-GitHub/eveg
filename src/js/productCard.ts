@@ -18,10 +18,10 @@ const cardTemplateStr: string = `
       <span>{{ UNITS }}</span>
     </span>
     <div class="shop-product-buying m-auto" data-num="{{ ID }}">
-      <div class="productBasketDiv m-auto">
-        <button class="addToBasket m-auto d-block btn btn-warning">Add to basket</button>
-        <div class="adjustDiv my-2 d-none">
-          <span class="m-auto d-flex justify-content-center input-group">
+      <div class="productBasketDiv my-2 mh-100">
+        <button class="addToBasket position-absolute my-1 m-auto btn btn-warning">Add to basket</button>
+        <div class="adjustDiv invisible mh-100">
+          <span class="m-auto d-flex justify-content-center input-group mh-100">
             <button class="btn adjustDown btn-warning">-</button>
             <input class="buyInput form-control" data-num="{{ ID }}" min="0" max="100" type="number" value="1" />
             <button class="btn adjustUp btn-warning">+</button>
@@ -68,14 +68,14 @@ export function createProductCard(
     const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
 
     if (inputBox.valueAsNumber <= 0) {
-      addToBasketBtn.classList.remove('d-none')
-      adjustDiv.classList.add('d-none')
+      addToBasketBtn.classList.remove('invisible')
+      adjustDiv.classList.add('invisible')
       onSetProductQuantity(product.id, 0)
     }
     else {
       const newQuantity = onSetProductQuantity(product.id, inputBox.valueAsNumber)
-      addToBasketBtn.classList.add('d-none')
-      adjustDiv.classList.remove('d-none')
+      addToBasketBtn.classList.add('invisible')
+      adjustDiv.classList.remove('invisible')
       inputBox.value = newQuantity.toString();
       (thisProductCard.querySelector('.adjustUp') as HTMLButtonElement).disabled = !(newQuantity < MAX_PRODUCT_QUANTITY)
     }
@@ -100,8 +100,8 @@ export function createProductCard(
     if (newQuantity === 0) {
       const addToBasketBtn = thisProductCard.querySelector('.addToBasket') as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
-      addToBasketBtn.classList.remove('d-none')
-      adjustDiv.classList.add('d-none')
+      addToBasketBtn.classList.remove('invisible')
+      adjustDiv.classList.add('invisible')
     }
     (thisProductCard.querySelector('.adjustUp') as HTMLButtonElement).disabled = false
   })
@@ -114,8 +114,8 @@ export function createProductCard(
       const newQuantity = onAddToBasketRequested(product.id, 1)
       const addToBasketBtn = e.target as HTMLButtonElement
       const adjustDiv = addToBasketBtn.nextElementSibling as HTMLDivElement
-      addToBasketBtn.classList.add('d-none')
-      adjustDiv.classList.remove('d-none')
+      addToBasketBtn.classList.add('invisible')
+      adjustDiv.classList.remove('invisible')
 
       inputBox.value = newQuantity.toString()
 
