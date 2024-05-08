@@ -19,7 +19,8 @@ const HEADER_HTML: string = `
           </li>
         </ul>
         <!-- TODO: Position absolute center -->
-        ${isHome() ? `
+        ${isHome()
+? `
         <form class="d-flex search flex-lg-row flex-column align-items-center mx-auto" role="search">
           <input class="form-control me-2" id="searchbox" type="search" placeholder="Search" aria-label="Search" />
           <span class="d-flex flex-row">
@@ -27,7 +28,8 @@ const HEADER_HTML: string = `
             <button id="closesearchbutton" class="btn btn-outline-danger btn-sm mx-1" type="submit" disabled>Cancel</button>
           </span>
         </form>
-        `: ''}
+        `
+: ''}
         <ul class="navbar-nav me-2">
           <li class="nav-item">
             <a class="nav-link active" href="/checkout.html"><i class="bi bi-cart"></i> Checkout</a>
