@@ -20,7 +20,7 @@ const HEADER_HTML: string = `
         </ul>
         <!-- TODO: Position absolute center -->
         ${isHome()
-? `
+          ? `
         <form class="d-flex search flex-lg-row flex-column align-items-center mx-auto" role="search">
           <input class="form-control me-2" id="searchbox" type="search" placeholder="Search" aria-label="Search" />
           <span class="d-flex flex-row">
@@ -29,7 +29,7 @@ const HEADER_HTML: string = `
           </span>
         </form>
         `
-: ''}
+          : ''}
         <ul class="navbar-nav me-2">
           <li class="nav-item">
             <a class="nav-link active" href="/checkout.html"><i class="bi bi-cart"></i> Checkout</a>

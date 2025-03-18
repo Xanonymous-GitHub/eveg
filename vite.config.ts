@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
-import { type UserConfigFnObject, defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
+import type { UserConfigFnObject } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import type { ImportMetaEnv } from './src/vite-env'
 
